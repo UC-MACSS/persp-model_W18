@@ -34,7 +34,7 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | Date | Day | Topic | Readings | Assignment |
 |------------|-------|---------------------------------------------------------|--------------|------------------------------|
 | Jan.  3 | W | Model/theory building | V1997 |  |
-| Jan.  8 | M | Data generating process |  | PS1 |
+| Jan.  8 | M | Data generating process |  | [PS1](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS1/PS1.pdf) |
 | Jan. 10 | W | Maximum likelihood estimation | Notes |  |
 | Jan. 15 | M | **No class (Martin Luther King, Jr. Day)** |  |  |
 | Jan. 17 | W | Maximum likelihood estimation | Notes |  |
