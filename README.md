@@ -29,11 +29,11 @@ You will have 9 problem sets throughout the term. I will drop everybody's lowest
 
 If you need any special accommodations, please provide us with a copy of your Accommodation Determination Letter (provided to you by the Student Disability Services office) as soon as possible so that you may discuss with me how your accommodations may be implemented in this course.
 
-## Course schedule (lite)
+## Course schedule
 
 | Date | Day | Topic | Readings | Assignment |
 |------------|-------|---------------------------------------------------------|--------------|------------------------------|
-| Jan.  3 | W | Model/theory building | V1997 |  |
+| Jan.  3 | W | Model/theory building | [V1997](http://people.ischool.berkeley.edu/~hal/Papers/how.pdf) |  |
 | Jan.  8 | M | Data generating process |  | [PS1](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS1/PS1.pdf) |
 | Jan. 10 | W | Maximum likelihood estimation | Notes |  |
 | Jan. 15 | M | **No class (Martin Luther King, Jr. Day)** |  |  |
