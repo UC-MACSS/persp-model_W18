@@ -17,11 +17,13 @@ Students are often well trained in the details of specific models relevant to th
 
 ## Grades
 
-| Assignment           | Quantity | Points | Total Points | Percent |
-|----------------------|----------|--------|--------------|---------|
-| Problem Sets   | 9        | 10     | 90           | 90%      |
-| Midterm exam        | 1        | 10     | 10           | 10%      |
-| **Total Points**     | --    | --  | 100        | 100%  |
+You will have 9 problem sets throughout the term. I will drop everybody's lowest problem set score. For this reason, problem sets will only account for 80 percent of your grade.
+
+| Assignment       | Quantity | Points | Total Points | Percent |
+|------------------|----------|--------|--------------|---------|
+| Problem Sets     | 9        | 10     | 80           | 80%     |
+| Midterm exam     | 1        | 20     | 20           | 20%     |
+| **Total Points** | --       | --     | 100          | 100%    |
 
 ## Disability services
 
@@ -35,21 +37,22 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | Jan.  8 | M | Data generating process |  | PS1 |
 | Jan. 10 | W | Maximum likelihood estimation | Notes |  |
 | Jan. 15 | M | **No class (Martin Luther King, Jr. Day)** |  |  |
-| Jan. 17 | W |  |  |  |
+| Jan. 17 | W | Maximum likelihood estimation | Notes |  |
 | Jan. 22 | M | Generalized method of moments | Notes | PS2 |
-| Jan. 24 | W |  |  |  |
-| Jan. 29 | M | Simulated method of moments | Notes | PS3 |
-| Jan. 31 | W |  |  |  |
+| Jan. 24 | W | Generalized method of moments | Notes |  |
+| Jan. 29 | M | Statistical learning and linear regression | JWHT Ch. 2, 3 | PS3 |
+| Jan. 31 | W | Classification and logistic regression | JWHT Ch. 4 |  |
 | **Feb. 5** | **M** | **Evans Midterm** |  | PS4 |
-| Feb.  7 | W | Statistical learning and linear regression | ISL Ch 2-3 |  |
-| Feb. 12 | M | Logistic regression | ISL Ch 4.1-3 | Linear regression PS due |
-| Feb. 14 | W | Generalized linear models | Notes |  |
-| Feb. 19 | M | Resampling methods (cross-validation and bootstrapping) | ISL Ch 5 | GLM PS due |
-| Feb. 21 | W | Non-linear modeling | ISL Ch 7 |  |
-| Feb. 26 | M | Tree-based methods | ISL Ch 8 | Resampling/non-linear PS due |
+| Feb.  7 | W | Generalized linear models | Notes |  |
+| Feb. 12 | M | Resampling methods (cross-validation and bootstrapping) | JWHT Ch. 5 | PS5 |
+| Feb. 14 | W | Nonlinear modeling | JWHT Ch. 7 |  |
+| Feb. 19 | M | Tree-based methods | JWHT Ch. 8 | PS6 |
+| Feb. 21 | W | Tree-based methods | JWHT Ch. 8 |  |
+| Feb. 26 | M | Support vector machines | JWHT Ch. 9 | PS7 |
 | Feb. 28 | W | Support vector machines | ISL Ch 9 |  |
-| Mar.  5 | M | Non-parametric methods | TBD | Trees & SVM PS due |
-| Mar.  7 | W | Unsupervised learning | ISL Ch 10 |  |
+| Mar.  5 | M | Neural networks | Notes | PS9 |
+| Mar.  7 | W | Neural networks | Notes |     |
+| Mar. 12 | M |                 |       | PS10 |
 
 ## References and Readings ##
 
