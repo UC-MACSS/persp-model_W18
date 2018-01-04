@@ -2,6 +2,6 @@
 title: "test"
 author: "Nora Nickels"
 date: "1/4/2018"
-output: pdf_document
+output: github_document
 ---
 
