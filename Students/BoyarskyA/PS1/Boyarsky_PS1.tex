@@ -79,11 +79,11 @@
 \begin{enumerate}[a.]
 	\item Since the outcome of to get married (1) or not to get married is a binary variable. We use a probit regression model to examine this phenomena. Thus are model takes the following form:
 	$$P(Y_i = 1 | A_i, S_i, r_i, Y_i, W_i, \omega_i) = \Phi(\beta_0 + \beta_1A_i + \beta_2S_i + \beta_3A_iS_i + \beta_4Y_ir_i + \beta_5W_i + \beta_6W_i\omega_ir_i + \beta_7\omega_ir_i + \epsilon_i)$$
-	Where, $\Phi$ is the CDF and ($\beta_0 + \dots +\beta_7\omega_ir_i + \epsilon_i$) is treated as a Z-score.
+	Where, $\Phi(\cdot)$ is the CDF and ($\beta_0 + \dots +\beta_7\omega_ir_i + \epsilon_i$) is treated as a Z-score.
 
 	\item The endogenous variable, $Y_i$, is an individual, $i$, descion to get married or not to get married.
 	$$Y_i = \begin{cases} 1 & y_i^* > 0 \text{ (Get Married)} \\ 0 & y_i^* \leq 0 \text{ (Do Not Get Married)} \end{cases}$$
-	where $y^* = \bf{\beta}\bf{X}+\epsilon$.
+	where $y^* = \bf{\beta}\bf{X}+\epsilon$. And, $\bf{X}$ denotes our exogenous variables in matrix form.
 	\vspace{10pt}
 	\\ The exogenous variables are $A_i$, which is individual age. $S_i$ the sex of an individual, this is categorical (0 - Male, 1 - Female, 2 - Other). $r_i$ is an individuals relationship status (0 - identifies not in a relationship, 1 - identifies in a relationship). $Y_i$ is the number of years an indiviudal has been in a relationship. $W_i$ is the wealth of an indiviudal, that is all assets (property, savings, etc.) minus all liabilities (loans, credit card debt, etc.). $\omega_i$ is partner wealth, calculated the same as above. $\epsilon_i \sim N(0,1)$ is the error term.
 
