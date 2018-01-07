@@ -1,0 +1,162 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set 1}} \\
+  MACS 30010, Dr. Evans \\
+  Fiona Fan
+\end{flushleft}
+
+\vspace{2mm}
+
+\noindent\textbf{Problem 1}
+Classify a model from a journal (5 points).
+
+\textbf{Part (a, b \& c).} \\
+Chetty (2015) lays out a framework of how behavioral economics can positively influence public policy modeling. To conceptualize, Chetty introduced a representative-agent model, as shown in \eqref{model}. Here, the agent tries to maximize her experienced utility $u(c)$ (the actual well-being) by choosing a set of tax rates $t$ and "nudges" $n$ as described in Thaler and Sunstein (2008). Policy-makers architect nudges to direct the public towards a pre-assumed better outcome, like placing the healthy food in more salient places in a cafeteria while hiding away the junk food. $d$ represents the set of ancillary conditions that resemble nudges, which influence people's behaviors but cannot be manipulated by policy-makers, unlike $n$. $c$ represents a set of different consumption goods or consumption at different times. $\bar{R}$ is a revenue requirement. $v(c)$ is her decision utility (the objective to maximize). p is the pretax prize vector for consumption good $c$, and $Z$ is the individual's wealth. \\
+
+
+
+
+\begin{align}\label{model}
+ max_{t,n} \ u(c) \ s.t.\\
+ t \cdot c=\bar{R}\\
+ c = arg\,max_{c}\{v(c|n,d) \ s.t.(p+t) \cdot c=Z\}.
+\end{align}
+
+\textbf{Part (d).} \\
+Here in the model, $u(c), v(c|n,d), c, t, n$ are endogneous, determined internally by the model in a two-step process. First $c$ is determined to  maximize the agent's decision utility $v(c)$, and then $t,n$ are determined to maximize the agent's experienced utility $u(c)$. $d,p,\bar{R}, Z$ are exogenously given for the miximization. 
+
+\textbf{Part (e).} \\
+This model is static as no time-dependent changes are introduced. It is highly non-linear as the endogenous variables are interdependent. It is deterministic as no randomness is introduced. 
+
+\textbf{Part (f).} \\
+Endogenously chosen leisure can be added to the model. I will give one example of how below. Suppose tax $t$ is consumption tax only, then the model becomes:\\
+
+\begin{align}\label{model2}
+max_{t,n} \ u(c) \ s.t.\\
+t \cdot c=\bar{R}\\
+c,\,l = arg\,max_{c,l}\{v(c,l|n,d) \ s.t.(p+t) \cdot c+(1-l) \cdot w=Z\}.
+\end{align}
+
+,where $w$ is the exogeneous wage and $l$ is the endogeneous leisure. The total mount of time is assumed to be 1. Here, experienced utility that the policy maker uses to make decision is still determined by $c$. However, when choosing $c$ to maximize decision utility, the agents take $l$, leisure, into consideration as well.\\
+
+\noindent \textbf{Bibliography}:\\
+Chetty, Raj. "Behavioral economics and public policy: A pragmatic perspective." The American Economic Review 105, no. 5 (2015): 1-33. 
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 2}
+Make your own model. (5 points).
+
+\textbf{Part (a, b \& c).} \\
+Since here the outcome variable is binary, I will use logistic regression to model the decision to get married. 
+\begin{equation}\label{model3}
+	%Pr(Y=1|X_{1}, X_{2}, ..., X_{K}) = F(\beta_0+\beta_1 X_{1}+\beta_{2} X_{2}+ \beta_{3} X_{3} ... + \beta_{k} X_{k} + \epsilon)
+	Pr(Y_i=1|X_{1i}, X_{2i}, ..., X_{Ki}) = F(\beta_0+\beta_1 X_{1i}+\beta_{2} X_{2i}+ \beta_{3} X_{3i} ... + \beta_{k} X_{ki} + \epsilon_i)
+\end{equation}
+where
+\begin{equation}
+	F(x) = \frac{1}{1+e^{-x}}
+\end{equation}
+Here, $Y$ is the outcome variable whose values 1 (get married) and 0 (not married). $X_1$ is age, a continuous numerical variable; $X_2$ is ethnicity, a categorical variable; $X_3$ is zipcode, treated as a categorical variable; $X_4$ is the number of years of higher education, a continuous variable; $X_5$ is the number of years of parental higher education, also a continuous variable; $X_6$ is whether the parents divorced, a binary variable; $X_7$ is the subject's current dating status, a categorical variable; $X_8$ is the subject's religion, a categorical variable; $X_9$ is the income level of the subject, a continuous variable. $\epsilon$, drawn from  is the error term, representing haphazard events that can prompt a person to make the decision, like the legalization of same-sex marriage. $\epsilon$ is drawn from a log-normal distribution $LN(0,\sigma^2)$. 
+
+\textbf{Part (d).} \\
+The variables that could bear most significance, in my opinion, are age, income level of the subject, current dating status, and religion. The rest are supplementary control variables.
+
+\textbf{Part (e).} \\
+I chose the variables described in Part (a-c) based on my intuition and some literature review. The factors described in Part (d), in my opinion, have more salient causal influence over people's decision to get married, as compared to the rest, for the following reasons:
+
+\begin{enumerate}
+	\item age
+	\begin{itemize}
+		\item Older people are more likely to be urged into marriage.
+	\end{itemize}
+	\item income level of the subject
+	\begin{itemize}
+		\item More financially well-off people might be less likely to seek the stability of a marriage.
+	\end{itemize}
+	\item current data status
+	\begin{itemize}
+		\item People in a stable relationship are more likely to decide to marry.
+	\end{itemize}
+	\item religion
+	\begin{itemize}
+		\item Certain religions prompt believers to get married within a certain age range. 
+	\end{itemize}
+\end{enumerate}
+
+
+\textbf{Part (f).} \\
+A test on the significance of these factors could be a regression run on the available census data, or, (since the dating status of the participant might be unavailable) a small scale survey. A preliminary logistic regression \eqref{model4} will not only tell us about the significance of the factors, but will also help us calibrate our model. 
+\begin{equation} \label{model4}
+Pr(Y_i^{'}=1|X_{1i}^{'}, X_{2i}^{'}, ..., X_{Ki}^{'}) = F(\beta_0^{'}+\beta_1^{'} X_{1i}^{'}+\beta_{2}^{'} X_{2i}^{'}+ \beta_{3}^{'} X_{3i}^{'} ... + \beta_{k}^{'} X_{ki}^{'} + \epsilon_i^{'})
+\end{equation}
+Additionally, if we want to see if our model holds up against real-world data, we can simulate the data, using randomly generated $X_{1i}, X_{2i}, ..., X_{Ki}$ and $\epsilon$ with similar mean and variance to the survey data, to predict $Y_i$. Then we compare the simluated $Y_i$ with $Y_i^{'}$ and see if the two groups are significanly different. If not, then we can say model is somewhat robust.
+
+\end{document}
+
