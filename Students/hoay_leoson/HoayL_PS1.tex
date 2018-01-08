@@ -1,0 +1,197 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  MACS 30000, Dr. Evans \\
+  Leoson Hoay
+\end{flushleft}
+\vspace{3mm}
+\noindent\textbf{Problem 1} Classify a model from a journal.
+\\
+\\
+\noindent\textbf{Part (a).} 
+
+\noindent{I chose a 2014 article from the \underline{American Economic Review} by Stuart S. Rosenthal (\emph{"Are Private Markets and Filtering a Viable Source of Low-Income Housing? Estimates from a “Repeat Income” Model"}). The article aims to address the poorly estimated process of filtering in private housing markets, by first demonstrating higher-than-expected filtering rates using a "repeat income model", and then decomposing the model into various factors such as the type of lease, income elasticity of demand, and inflation. Previous conceptualisations lend little weight to the viability of the filtering mechanism in providing low-income housing, as past models based on depreciation produce estimates beyond the purchasing power of low-income households.} 
+\\
+\\
+\noindent\textbf{Part (b).} Article Citation
+\\
+\\
+Rosenthal, S. S. (2014). Are Private Markets and Filtering a Viable Source of 
+
+\indent{Low-Income Housing? Estimates from a “Repeat Income” Model. American} 
+
+\indent{Economic Review, 104(2), 687–706. 
+\\
+\\
+\noindent\textbf{Part (c).}
+\begin{equation}\label{repeatincome}
+  \log\left(\frac{Y_{t+\tau}}{Y_{t}}\right) = \sum\limits_{t=1}^{\tau_i} \gamma_t D_{t,i} + \omega_{t,i}
+\end{equation}
+\begin{center}for home \emph{i} = 1,...,\emph{n}.\end{center}
+
+\noindent{(1)} - Non-decomposed "repeat income model" used to estimate $\gamma$, the repeat income index. $t$ refers to the age of a housing unit at a given turnover, and $\tau$ refers to the number of years after $t$ when a successive turnover occurs.
+\\
+\\
+\noindent\textbf{Part (d).}
+Exogenous and endogenous variables.
+\begin{table}[htbp] \centering \captionsetup{width=6.0in}
+\caption{\label{Tab}\textbf{Model variables}}
+  \begin{threeparttable}
+  \begin{tabular}{>{\small}l |>{\small}c |>{\small}r}
+    \hline\hline
+    Variables & Symbol & Exogenous/Endogenous \\
+    \hline
+    Repeat Income Index & $\gamma$ & Endogenous \\
+    Turnover Status* & $D$ & Exogenous \\
+    Income of New Occupant** & $Y$ & Exogenous \\
+    Random Error Term & $\omega$ & Exogenous \\
+    \hline\hline
+  \end{tabular}
+  \begin{tablenotes}
+    \scriptsize{\item[*]Equal to -1, 0, or 1 depending on whether a given property of age $t$ turns over for the first time, does not turn over, or turns over for the second time, respectively.}
+    \scriptsize{\item[**]At each turnover.}
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+\\
+\\
+\noindent\textbf{Part (e).}
+
+\noindent{The model is dynamic, linear and stochastic (error term).}
+\\
+\\
+\noindent\textbf{Part (f).}
+
+\noindent{A variable that might be valuable in the model is the change in national unemployment rates between time $t$ and time $t + r$, which may account for changes in the $\gamma$ vector and turnover gap.}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 2} Make your own model of whether someone decides to get married.
+\\
+\\
+\noindent\textbf{Part (a-c).} Write down a model.
+\\
+\\
+\begin{equation}\label{marriage}
+  P\left(Y_{i} = 1 | X_{1},...,X_{n}\right) = \frac{1}{1 + e^{-z_{i}}}
+\end{equation}
+\begin{equation}
+  z_{i} = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \beta_3 x_{3i} + \beta_4 x_{4i} ... + \beta_8 x_{8i} + \epsilon_{i}
+\end{equation}
+\begin{center}for individual \emph{i} = 1,...,\emph{n}. \end{center}
+
+\noindent\textbf{Part (d).} Variables.
+\begin{table}[htbp] \centering \captionsetup{width=6.0in}
+\caption{\label{Tab}\textbf{Marriage model variables}}
+  \begin{threeparttable}
+  \begin{tabular}{>{\footnotesize}l |>{\footnotesize}c |>{\footnotesize}l}
+    \hline\hline
+    Variables & Symbol & Values \\
+    \hline
+    Output (Marriage State) & $Y$ & 1 if will get married, 0 otherwise. \\
+    Ethnicity & $\beta_1$ & Discrete \\
+    Religion & $\beta_2$ & Discrete  \\
+    Views on Commitment & $\beta_3$ & Range(1=completely committed, 0=completely averse) \\
+    Perceived Benefit of Marriage & $\beta_4$ & Range(1=most beneficial, 0=least beneficial) \\
+    Perceived Job Stability & $\beta_5$ & 1 if stable, 0 otherwise. \\
+    Has A Partner & $\beta_6$ & 1 if in a relationship, 0 otherwise. \\
+    Heterogenous Orientation & $\beta_7$ & 1 if open to heterosexual relationship, 0 otherwise. \\
+    Age & $\beta_8$ & Age of individual \\
+    Random Error Term & $\epsilon$ & Accounts for autopoietic ecological/life state changes. \\
+    \hline\hline
+  \end{tabular}
+  \end{threeparttable}
+\end{table}
+\\
+\\
+\noindent\textbf{Part (d-e).} Important variable explanation.
+
+\noindent{I consider \textbf{Age},  \textbf{Heterogenous Orientation}, \textbf{Perceived Benefit of Marriage}, and \textbf{Has A Partner} to be the key variables in the model.}
+\\
+\\
+\noindent\textbf{Age} - Among the proportion of the population who are ever-married by end-of-life, a increasing pace is usually observed as a cohort increases in age (Coale, 2011). This is presumably due to external and internal pressures to marry that increase with an individual's age.
+\\
+\\
+\textbf{Heterogenous Orientation} - I decided on this factor due to significant challenges faced by non-heterosexual couples during the process of institutionalizing their union. These challenges can be legal, or ecological (stigma, family pressure).
+\\
+\\
+\textbf{Perceived Benefit of Marriage} - Not every person perceives marriage to be a boon, or even necessary, in confirming one's relationship with a significant other. There are certain social and legal benefits for sure, but whether or not an individual deems marriage to be a worthwhile investment and commitment depends on an individual's own personal goals.  
+\\
+\\
+\textbf{Has A Partner} - Whether or not one has a partner of interest underlies the possible future rite of matrimony. Even if an individual is not actively "dating" this partner of interest in the strictest sense, other factors can influence the act of marriage(family pressure, or to obtain certain benefits from spousal status, for example).
+\\
+\\ 
+\noindent\textbf{Part (f).} Preliminary Testing
+
+\noindent{A preliminary survey can be conducted to to ascertain responses on variables that make use of external constructs or require self-reports - such as Perceived Benefit of Marriage, Views on Committment, and Has a Partner. This survey will also include typical demographic data, including whether or not an individual is married. A non-linear regression can then be run on the results to estimate the model coefficients and determine if the factors are significant.}
+\\
+\\
+A large scale survey can then be conducted based on the sampling of participants using census sampling methods - or if a large scale survey is not possible, repeated stratified samples can be surveyed. We can then apply our model to attempt to predict the marriage status of the respondents from their reported factor values in order to determine of our model is externally valid and robust. 
+
+\end{document}
