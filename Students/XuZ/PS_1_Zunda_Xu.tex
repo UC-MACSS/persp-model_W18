@@ -1,0 +1,194 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  MACS 30100, Dr. Evans \\
+  Zunda Xu
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 1}
+Classify a model from a journal.
+
+\noindent\textbf{Part (a).} The published article I found is from the \emph{American Economic Review 2017,107(6),} which is named \emph{Report Cards: The Impact of Providing School and Child
+Test Scores on Educational Markets.}
+
+\noindent\textbf{Part (b).} The detailed citation of the article is as follows: 
+
+\noindent Andrabi, Tahir, Jishnu Das, and Asim Ijaz Khwaja. 2017. "Report Cards: The Impact of Providing School and Child Test Scores on Educational Markets." American Economic Review, 107(6): 1535-63.
+
+\noindent DOI: 10.1257/aer.20140774
+
+\noindent\textbf{Part (c).} The equation of the model is as follows:
+\begin{equation*}
+\begin{split}
+ \emtextbf{Y}_{mi2} = 
+ & ~\alpha_{d} + \beta_{0}\emtextbf{RC_{m}} + \beta_{1}\emtextbf{GOV_{mi}} + \beta_{2}\emtextbf{HIGH_{mi1}} + \beta_{3}\emtextbf{RC_{m}} \cdot \emtextbf{GOV_{mi}} \\ 
+ & + \beta_{4}\emtextbf{RC_{m}} \cdot \emtextbf{HIGH_{mi1}} + \beta_{5}\emtextbf{RC_{m}} \cdot \emtextbf{GOV_{mi}} \cdot \emtextbf{HIGH_{mi1}} + \gamma \cdot \emtextbf{Y_{mi1}} \\ 
+ & + \delta \cdot \emtextbf{X_{m1}} + \epsilon_{mi}
+\end{split}
+\end{equation*}
+
+\noindent\textbf{Part (d).} The endogenous variable in this model is $Y_{mi2}$, which is the outcome of interest such as fees or enrollment) for school i in village m in time period 2 (post-intervention year), while the exogenous variables in this model are as follows: 
+
+\noindent $RC_{m}$ : the treatment dummy assigned to village m, which means if the village received the treatment, ${RC_{m}}$ = 1
+
+\noindent $\alpha_{d}$ :  district fixed-effects
+
+\noindent $Y_{mi1}$ : the baseline measurement of the outcome variable
+
+\noindent $X_{m1}$ : a vector of village-level baseline controls (size, wealth, adult literacy, and Herfindahl measure of school competition)
+
+\noindent $GOV_{mi}$ : a dummy indicator for whether the school is a public school
+
+\noindent $HIGH_{mi1}$ : an indicator for whether the school baseline score was above a predefined baseline test score threshold
+
+\noindent\textbf{Part (e).} The model mentioned above is a static, nonlinear and stochastic model.
+
+\noindent Since the model does not contain an element of time or the interactions between variables over time, thus the model is static, also there is random variable in this model, thus it is a static, nonlinear and stochastic model.
+
+\noindent\textbf{Part (f).} A valuable that the model may be missing is that the amount of education funds those schools received during the experiment time, since the endogenous variable $Y_{mi2}$, which represents the outcome of interest such as fees may also influenced by the education funds that those schools received, for those schools which obtaining higher education funds, they may also choose to reduce tuition fees. 
+
+\newpage
+
+\noindent\textbf{Problem 2}
+Make your own model.
+
+\noindent\textbf{Part (a)(b).}Write down a model of whether someone decides to get married.
+
+\noindent The model I designed is a Probit Model and the equation of the model are as follows:
+\begin{equation*}
+\begin{split}
+ \emtextbf{Pr(Y_{i} = 1 | X_{i})} = \Phi(\emtextbf{X_{i}^T\beta}),~~~~~~~~~~~ \\or~~~~~~~~~~~~~~~~~~~~~~~~~ \\
+ \emtextbf{Y_{i}} = \left\{
+                        \begin{array}{lr}
+                        1, & Y_{i}^* > 0 \\
+                        0, & otherwise
+                        \end{array}
+                \right.,~\emtextbf{Y_{i}^* = \emtextbf{X_{i}^T\beta}} + \epsilon_{i}. \\
+\end{split}
+\end{equation*}
+\noindent , where \emtextbf{Pr} denotes probability, and $\Phi$ is the Cumulative Distribution Function (CDF) of the standard normal distribution. The parameters $\beta$ are typically estimated by maximum likelihood. We can also suppose there exists an auxiliary random variable $Y_{i}^*$, then $Y_{i}$ can be viewed as an indicator for whether this latent variable is positive,  $X_{i}$ represents the vector of independent variables and $\epsilon_{i}$ \thicksim N(0,1).
+
+\noindent To be specific, the equation of $Y_{i}^*$ can be described as follows:
+\begin{equation*}
+\begin{split}
+ \emtextbf{Y^*_{i}} = &~ \beta{0} + \beta_{1} \cdot \emtextbf{AGE_{i}} + \beta_{2} \cdot \emtextbf{GEN_{i}} + \beta_{3} \cdot \emtextbf{INC_{i}} + \beta_{4} \cdot\ \emtextbf{EDU_{i}} + \beta_{5} \cdot \emtextbf{RACE_{i}} \\ & + \beta_{6} \cdot \emtextbf{REG_{i}} + \beta_{7} \cdot\ \emtextbf{REL_{i}} + \beta_{8} \cdot \emtextbf{SEX_{i}} + \beta_{9} \cdot\ \emt{PRES_{i}} + \epsilon_{i}.
+\end{split}
+\end{equation*}
+
+\noindent The endogenous variable in this model is $Y_{i}$, which is a dummy variable for whether the individual i decides to get married, in other word, if $Y_{i} = 1$, means the individual i decides to get married. 
+
+\noindent The exogenous variables in this model are as follows:
+
+\noindent $AGE_{i}$ : the age of individual i
+
+\noindent $GEN_{i}$ : the gender of individual i, which is a dummy variable, if i is male, $GEN_{i} = 1$
+
+\noindent $INC_{i}$ : the income level of individual i, which is a categorical variable
+
+\noindent $EDU_{i}$ : the education level of individual i, which is a categorical variable
+
+\noindent $RACE_{i}$ : the race of individual i, which is a categorical variable
+
+\noindent $REG_{i}$ : the region that individual i lives in, which is a categorical variable
+
+\noindent $REL_{i}$ : the religious of individual i, which is a categorical variable
+
+\noindent $SEX_{i}$ : the sexual orientation of individual i, which is a dummy variable, if i is heterosexual, then $SEX_{i} = 1$
+
+\noindent $PRES_{i}$ : the pressure of getting married received from families or friends , which is a categorical variable
+
+\noindent\textbf{Part (c).} Make sure that the model is a complete data generating process.
+
+\noindent In this model, we could use the sample data, for example, a sample with n individuals, to estimate the value of parameters $\beta$. When the parameters $ \beta $ and the vector of exogenous variables $ X $ is known (fixed), a sample of size $ n_{0}$ is created by obtaining $ n_{0}$ values of the random variable $ \epsilon$ and then using these values, in conjunction with the rest of the model, to generate $ n_{0}$ values of $ Y_{i}$, which make sure that the model is a complete data generating process.
+
+\noindent\textbf{Part (d).} The key factors that influence this outcomes are $AGE_{i}$, $REL_{i}$ and $PRES_{i}$, which represent people's age, religious and pressure of getting married.
+
+\noindent\textbf{Part (e).} The reasons I decide on the these factors are as follows: 
+
+\noindent  $AGE$ : the decision of getting married is obviously influenced by people's age, which means in some specific age groups, older people are more likely to decide to get married than younger people.
+
+\noindent $GEN$ : People with different gender may have different attitudes towards marriage, sometimes females may be more willing to step into marriage.
+
+\noindent $INC_{i}$ : People may not choose to get married when they think their current income level cannot support the whole family, thus income level may influence people's decision.
+
+\noindent $EDU_{i}$ : People with different education level also have different opinions about marriage, and their requirements of marriage may also be different. which may influence their decision.
+
+\noindent $RACE_{i}$ : People with different race may also have different attitudes towards marriage, which directly influence their decision of getting married.
+
+\noindent $REG_{i}$ : Different regions usually have different marriage rate, which shows people living in different regions may make different decision of whether getting married.
+
+\noindent $REL_{i}$ : People's decisions of getting married are also influenced by their religious, since people with some specific religious may not be allowed to get married.
+
+\noindent $SEX_{i}$ : In some areas, same-sex marriage is still illegal, which may influence some same-sex couples' decision of getting married.
+
+\noindent $PRES_{i}$ : The pressure people received of getting married from families, relatives or friends is also a key factor, people are more likely to choose to get married when they receive more pressure.
+
+\noindent\textbf{Part (f).} The steps of the preliminary test are as follows: \textbf{1)} Conduct the anonymous online survey to create the dataset used for the test, the content of the online survey including interviewers' age, gender, income level, education level, race, region, religious, sexual orientation, pressure of getting married (high, medium or low) and whether they decide to get married (Yes or No). After collecting those survey results, we change those categorical variables into numeric ordinal variables based on our benchmark to establish the final dataset. \textbf{2)} Randomly choose a sample set with size n and use this sample as training data to estimate the parameters in this model, and check the significance of those estimators, if the estimator $\beta_{i}$ is significant, that means its related independent variable is a significant factor in real life, otherwise, it's not.  \textbf{3)} The rest of the data can also be used as test data to check the robustness of the model, we input the value of those independent variables into the model to estimate the outcome, which is whether the individual i decide to get married, then compare the outcomes with the real outcome in the dataset to check the robustness of the model, which could continue testifying whether those factors in this model are significant in real life.
+\end{document}
