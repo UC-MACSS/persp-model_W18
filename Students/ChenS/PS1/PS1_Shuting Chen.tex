@@ -1,0 +1,155 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  MACS 30100, Dr. Evans\\
+  Shuting Chen 
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 1. Classify a model from a journal.}
+\vspace{2mm}
+
+\noindent\textbf{Parts (a) - (c).} 
+\vspace{1mm}
+
+\noindent\text{Detailed citation of the article:} 
+
+\noindent Cornelissen, Thomas, Christian Dustmann, and Uta Sch\"{o}nberg. 2017. ``Peer Effects in the Workplace." \textit{American Economic Review}, 107(2): 425-56. 
+\vspace{2mm}
+
+\noindent Description of the theoretical model from the selected article: 
+
+The authors develop a principal-agent model of unobserved worker effect in which peer-induced productivity effects arise through social pressure and knowledge spillover and translate into peer-related wage effects. 
+
+Specifically, they consider a firm of \textit{N} workers and the production function for worker \textit{i} is defined as
+\begin{equation} \label{1}
+f_i = y_i + \varepsilon_i = a_i + e_i\,(1 + \lambda^K \bar{a}_{\sim i}) + \varepsilon_i, 
+\end{equation}
+where $y_i$ is worker $i$'s productive capacity, which depends on individual ability $a_i$, individual effort $e_i$, and average peer ability (excluding worker $i$) $\bar{a}_{\sim i}$. Besides, the knowledge spillover is captured by $\lambda^K$. 
+
+Apart from modelling individual output $f_i$, the authors construct the following disutility function by including cost of effort and peer pressure 
+\begin{equation} \label{2}
+    c_i = C(e_i) + P(e_i, \bar{f}_{\sim i}) = k\,e_i^2 + \lambda^P (m-e_i)\bar{f}_{\sim i}
+\end{equation}
+where $\lambda^P$ and $m$ can be treated as both the ``strength" and the ``pain" from peer pressure and $\bar{f}_{\sim i}$ is the average peer output (excluding worker $i$). 
+\vspace{1mm}
+
+\noindent\textbf{Part (d).} \\
+Exogenous variables: $a_i$, $e_i$, $\bar{a}_{\sim i}$ and $\bar{f}_{\sim i}$\\
+Endogenous variables: $f_i$ and $c_i$ 
+\vspace{1mm}
+
+\noindent\textbf{Part (e).} \\
+The model is static since it does not have any time index for each variable. Moreover, due to the nonlinear term $e_i\,\bar{a}_{\sim i}$ in function (\ref{1}) and quadratic cost of effort in function (\ref{2}), the model is nonlinear. Besides, this model is stochastic since it has $\varepsilon_i$, which is random productivity shock that is beyond the workers' control. 
+\vspace{1mm}
+
+\noindent\textbf{Part (f).} \\
+Presumably, one could include a variable representing average peer effort(excluding worker $i$) in the production function for each worker (i.e. $\bar{e}_{\sim i}$). This should be reasonable since workers may increase their production when they perceive that others work harder than themselves. 
+
+
+\newpage
+
+\noindent\textbf{Problem 2. Make your own model.} 
+\vspace{3mm}
+
+\noindent\textbf{Model.} \\
+To model whether someone decides to get married, which is a binary response variable, I am going to use the following logistic regression model
+\begin{equation}
+    P(y_i = 1|\textbf{x}) = G(\beta_0 + \beta_1r_i + \beta_2w_i + \beta_3a_i + \beta_4pm_i + \beta_5h_i + \beta_6eth_i)
+\label{3}
+\end{equation}
+where $G(\cdot)$ is the cumulative distribution function (CDF) for a standard logistic random variable, $r_i$ is a dummy variable indicating whether individual $i$ is in a stable relationship, $w_i$ represents $i$'s total wealth including income, saving, real estate, etc., $a_i$ represents $i$'s age in numerical numbers, $pm_i$ illustrates the parents marital status (divorced or not) for individual $i$, $h_i$ records whether $i$ is in a stable health status without suffering from severe disease within two years, and $eth_i$ is ethnicity. \vspace{2mm}
+
+\noindent\textbf{Data Generating Process.} \\
+We could generate data of $y_i$ as follows
+\begin{equation}
+ y_i=
+    \begin{cases}
+      1, & \text{if $y_{i}^{\ast}> 0$ (get married)}\\
+      0, & \text{otherwise (not get married)} 
+    \end{cases}
+    \label{4}
+\end{equation}
+where $y_{i}^{\ast}$ is a latent variable specified as 
+\begin{equation}
+ y_{i}^{\ast} = \beta_0 + \beta_1r_i + \beta_2w_i + \beta_3a_i + \beta_4pm_i + \beta_5h_i + \beta_6eth_i + \varepsilon_i, 
+ \label{5}
+\end{equation}
+and $\varepsilon_i$ follows the standard logistic distribution. \vspace{2mm}
+
+\noindent\textbf{Key Factors.}\\
+Among these six chosen variables, I think the first three variables, which are whether individuals are in a stable relationship, individual's wealth condition, and age, have most important impact on someone's decision of marriage. Firstly, being in a relationship is a prerequisite for considering marriage. However, most responsible people would not consider marriage until they have established a healthy and stable relationship with their partner. Thus, whether or not being in a stable relationship would be a key factor when someone considers whether to get married. Besides, people would commonly take their wealth level into account before marriage. Marriage actually means that two people form a new family, which involves setting up a new home and presumably raising the next generation in the near future. All of these require a solid source of wealth. In addition, someone would like to get married because they are at marriageable age. Within a certain age range, people are under more pressure to get married when they become older. 
+\vspace{2mm}
+
+\noindent\textbf{Preliminary Test.}\\
+A preliminary test could be conducted by using data collected from a relatively small scale survey designed for the desired variables. After collecting data, we could estimate the logit model (\ref{3}) by maximum likelihood estimation and implement statistical tests such as the likelihood ratio test to see the joint significance of chosen factors. Moreover, we could measure the goodness-of-fit of the model by pseudo $R^2$, $$\tilde{R}^2 = 1 - \frac{L_{ur}}{L_0},$$ where $L_{ur}$ is the log-likelihood for the unrestricted model and $L_0$ is the log-likelihood for the model estimated with only an intercept term. 
+
+\end{document}
+
+
