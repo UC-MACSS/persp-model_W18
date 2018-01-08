@@ -1,0 +1,97 @@
+\documentclass[dvips,12pt]{article}
+
+% Any percent sign marks a comment to the end of the line
+
+% Every latex document starts with a documentclass declaration like this
+% The option dvips allows for graphics, 12pt is the font size, and article
+%   is the style
+
+\usepackage[pdftex]{graphicx}
+\usepackage{url}
+\usepackage[superscript,biblabel]{cite}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand\inner[2]{\langle #1, #2 \rangle}
+\newcommand\norm[1]{\| #1 \|}
+
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+% These are additional packages for "pdflatex", graphics, and to include
+% hyperlinks inside a document.
+
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+% These force using more of the margins that is the default style
+
+\begin{document}
+
+% Everything after this becomes content
+% Replace the text between curly brackets with your own
+
+\title{Problem Set \#1}
+\author{Ari Boyarsky \\ aboyarsky@uchicago.edu}
+\date{January 8, 2018}
+
+% You can leave out "date" and it will be added automatically for today
+% You can change the "\today" date to any text you like
+
+\maketitle
+
+% -----------------------------------------------------------------------------
+% 									Begin
+% -----------------------------------------------------------------------------
+
+\section*{Problem 1}
+\begin{enumerate}[a.]
+	\item Philippe Aghion \& Ufuk Akcigit \& Angus Deaton \& Alexandra Roulet, 2016. "Creative Destruction and Subjective Well-Being," American Economic Review, American Economic Association, vol. 106(12), pages 3869-3897, December.
+
+	\item The study examines how the creation and destruction of jobs in a given area impacts the subjective well being of individuals. We choose to examine the estimation model introduced in the paper on pg. 13:
+	$$SW\,B_{i,m,t} = \alpha C D_{m,t} + \beta U_{m,t} + \delta X_{i,t} + T_t + \epsilon_{i,t}$$
+
+	\item $SW B_{m,t}$ which is subjective wellbeing for individual, $i$, in metropolitan statistical area (MSA), $m$, in year, $t$, is the endogenous variable.
+	\vspace{10pt} 
+	\\ The exogenous variables are creative destruction, $CD_{m,t}$. This variable (from Business Dynamics Statistics) denotes job creation vs. job destruction rates in an area. Unemployment rate $U_{m,t}$. $X_{i,t}$ is a vector of individual controls (gender, age, age squared, race, education level, and family status, and income bracket.). $T_t$ are year and month fixed effects. $\alpha, \beta, \delta$ are OLS parameters.
+
+	\item This model is dynamic (time component), linear (OLS estimation), and stochastic (random error term).
+
+	\item One possible factor that is left out here is an interaction term between overall level of education, say $E_{m,t}$, in an MSA and creative destruction. This maybe useful as education levels may influence the speed at which someone is abel to retrain for a new job. This could be added to the model at $E_{m,t}C D_{m,t}$.
+\end{enumerate}
+	\section*{Problem 2}
+\begin{enumerate}[a.]
+	\item Since the outcome of to get married (1) or not to get married is a binary variable. We use a probit regression model to examine this phenomena. Thus are model takes the following form:
+	$$P(Y_i = 1 | A_i, S_i, r_i, Y_i, W_i, \omega_i) = \Phi(\beta_0 + \beta_1A_i + \beta_2S_i + \beta_3A_iS_i + \beta_4Y_ir_i + \beta_5W_i + \beta_6W_i\omega_ir_i + \beta_7\omega_ir_i + \epsilon_i)$$
+	Where, $\Phi(\cdot)$ is the CDF and ($\beta_0 + \dots +\beta_7\omega_ir_i + \epsilon_i$) is treated as a Z-score.
+
+	\item The endogenous variable, $Y_i$, is an individual, $i$, descion to get married or not to get married.
+	$$Y_i = \begin{cases} 1 & y_i^* > 0 \text{ (Get Married)} \\ 0 & y_i^* \leq 0 \text{ (Do Not Get Married)} \end{cases}$$
+	where $y^* = \bf{\beta}\bf{X}+\epsilon$. And, $\bf{X}$ denotes our exogenous variables in matrix form.
+	\vspace{10pt}
+	\\ The exogenous variables are $A_i$, which is individual age. $S_i$ the sex of an individual, this is categorical (0 - Male, 1 - Female, 2 - Other). $r_i$ is an individuals relationship status (0 - identifies not in a relationship, 1 - identifies in a relationship). $Y_i$ is the number of years an indiviudal has been in a relationship. $W_i$ is the wealth of an indiviudal, that is all assets (property, savings, etc.) minus all liabilities (loans, credit card debt, etc.). $\omega_i$ is partner wealth, calculated the same as above. $\epsilon_i \sim N(0,1)$ is the error term.
+
+	\item My guess is that the key factors here are age, relationship status, and length of relationship. This is because generally speaking a person needs to be in a relationship to get married. Second, a person generally considers their age when they get married, this also acts as a proxy for things such as out of college, more established profesionally, and other life factors that are often correlated with age. Finally, years in a relationship since, the longer someone is in a relationship the more we would expect that they get married as they have invested more and more time with their partner. 
+
+	\item I choose the factors above because they generally have some relationship to an individuals decision to get married. As we discussed above, age, relationship status, and length of relationship have very obvious correlations to an individuals marriage decsion. Notice in our model we use an interaction term for years in a relationship and partners wealth since if they are not in a relationship these factors have no meaning. We also consider sex, and the interaction of age and sex since in many cultures there is a social desirability bias that proscribes when individuals of a certain sex should get married. We also look at individual wealth, partner wealth and the interaction of the two since people are generally more likely to embark on marriage if they feel financially comfortable. Additionally, there is rationality component here where if they are not financially secure and their partner is secure, or vice-versa, they may be more or less willing to get married. For instance, if one's partner is wealth relative to themselves they may be more willing to get married to that person. Finally, our normally distributed error terms completes the data-generating process and allows us to account for variations. These factors also act for proxy's such as income level, employment status, cultural background, sexual orientation, and others. Hence, we choose these variables as we expect them to be correlated with other useful factors. We also believe the causal process of how income may affect the marriage descion may actually act through age and wealth rather than be direct. 
+	\item We could test this model by conducting an online survey on mech. turk where we ask for age, sex, est. income level, est. debt level, relationship status, est. partner income, est. partner debt, length of relationship, and then "Would you say yes if your partner proposed today?" with "Yes or No" as option answrs. We would also ask other questions such as classification questions to distract them for what the survey may be about. We will also ask for other demographic data - race, region, education level,etc., so that we can adjsut our data to the U.S. census. Then we will run our probit regression on our model to estimate the $\beta_i$ parameters via MLE. This will tell us how each term is correlated with our outcome. Finally we can examine psuedo $R^2$, fraction correctly predicted, and $p$-values to identify which factors are strong predictors and if we have an overall good preliminary model.
+\end{enumerate}
+
+
+\end{document}
