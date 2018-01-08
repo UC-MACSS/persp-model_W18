@@ -1,7 +1,7 @@
 ---
 title: "Problem Set 1"
 author: "Dan Gamarnik"
-date: "January 7, 2018"
+date: "January 8, 2018"
 output: 
   pdf_document: 
     latex_engine: xelatex
@@ -10,8 +10,31 @@ output:
 
 (a)-(b) The model I used is from "[What Makes an Agency Independent?](http://onlinelibrary.wiley.com/doi/10.1111/ajps.12161/abstract)" by Jennifer L Selin (2015) in the *American Journal of Political Science*. It looks at how independent government agencies are from Congress and the President in setting out policy. 
 
-(c)![()](/ProblemSets/PS1/eq1.jpg)  
-(d) 
+
+(c) The model can be summarized as: $x_i$ $\sim$ $N$($\beta$$_j$$_0$ + $\beta$$_j$$_1$$x^\ast_i$, $\sigma^2_k$) 
+
+
+(d) In this case, $x^\ast_i$ (or factor score of independence of agencies) is endogenous while $x_i$, (unobserved independence) $\beta$$_j$$_0$,  $\beta$$_j$$_1$, (structural features of agencies) and $N$ (number of agencies) are all exogenous variables.        
+
+(e) Here, the model is static since it does not change over time, it is nonlinear given the set-up of the equation, and finally, it is deterministic since it does not account for any errors. 
+
+(f) One major feature this model is missing is any kind of variable relating to the political environment. Since the model is trying to capture independence of agencies, it is odd that there are no variables for things like congressional/presidential approval or any measures of the power of the government to oversee these agencies.   
+
+## Part 2.
+
+The model would go like this:
+
+$Y$$_m$$_a$$_r$$_r$ = $\beta_0$ + $\beta_1(Age)$ + $\beta_2(Income)$ + $\beta_3(Compatibility)$ $\times\ $$\beta_4(DatingDuration)$ + 
+$\epsilon$ 
+$$Marriage = $$ $$\begin{cases}1\quad if & Y > 0\\0 \quad if & Y < 0 \end{cases}$$
+
+
+In this model, I argue that some of the most important variables are $\beta_2(Income)$, $\beta_4(DatingDuration)$, and to a lesser extent, $\beta_1(Age)$ depending on how early the society prioritizes getting married. For the latter, the curve of the coefficient is highly determined by how traditional it is (that is, prioritizing earlier marriage), if it is less traditional than the correlation is less positive and significant. Likewise, income is an important factor in the ability of a couple to get married, given the expense of a wedding, and needing money to live comfortably as a family, this is important for the decision to get married. I would argue that factors like compatibility and dating, are the least important, given the high divorce rates in the US. 
+
+I chose these above other factors like employment because income is a better indicator since it better captures economic stability in a way employment might not (for instance, a wealthy person who retires early). Finally, I did not include gender since, not looking at recent breakthroughs in gender identity, the formula should be very similar to all genders because there is a dyadic relationship between them. That is, controlling for LGBTQ relationships, there is a logical necessity that men and women have to get married are very similar rates since it requires two people. 
+
+To do a preliminary test, I would test people from a dating website like Match.com which uses an algorithm for compatibility (like my variable) but also allows people to look for matches without the compatibility match. This would create a population where almost all the variables (except perhaps income) can be measured since people can disregard the website's measures of compatibility when dating. Therefore, it would be a simple matter of regressing the exogenous variables on the dependent, endogenous $Y$$_m$$_a$$_r$$_r$ and see how significant the relationship is.     
+
 
 
 
