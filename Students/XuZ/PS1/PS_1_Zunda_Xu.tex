@@ -176,19 +176,19 @@ Make your own model.
 
 \noindent $GEN$ : People with different gender may have different attitudes towards marriage, sometimes females may be more willing to step into marriage.
 
-\noindent $INC_{i}$ : People may not choose to get married when they think their current income level cannot support the whole family, thus income level may influence people's decision.
+\noindent $INC$ : People may not choose to get married when they think their current income level cannot support the whole family, thus income level may influence people's decision.
 
-\noindent $EDU_{i}$ : People with different education level also have different opinions about marriage, and their requirements of marriage may also be different. which may influence their decision.
+\noindent $EDU$ : People with different education level also have different opinions about marriage, and their requirements of marriage may also be different. which may influence their decision.
 
-\noindent $RACE_{i}$ : People with different race may also have different attitudes towards marriage, which directly influence their decision of getting married.
+\noindent $RACE$ : People with different race may also have different attitudes towards marriage, which directly influence their decision of getting married.
 
-\noindent $REG_{i}$ : Different regions usually have different marriage rate, which shows people living in different regions may make different decision of whether getting married.
+\noindent $REG$ : Different regions usually have different marriage rate, which shows people living in different regions may make different decision of whether getting married.
 
-\noindent $REL_{i}$ : People's decisions of getting married are also influenced by their religious, since people with some specific religious may not be allowed to get married.
+\noindent $REL$ : People's decisions of getting married are also influenced by their religious, since people with some specific religious may not be allowed to get married.
 
-\noindent $SEX_{i}$ : In some areas, same-sex marriage is still illegal, which may influence some same-sex couples' decision of getting married.
+\noindent $SEX$ : In some areas, same-sex marriage is still illegal, which may influence some same-sex couples' decision of getting married.
 
-\noindent $PRES_{i}$ : The pressure people received of getting married from families, relatives or friends is also a key factor, people are more likely to choose to get married when they receive more pressure.
+\noindent $PRES$ : The pressure people received of getting married from families, relatives or friends is also a key factor, people are more likely to choose to get married when they receive more pressure.
 
 \noindent\textbf{Part (f).} The steps of the preliminary test are as follows: \textbf{1)} Conduct the anonymous online survey to create the dataset used for the test, the content of the online survey including interviewers' age, gender, income level, education level, race, region, religious, sexual orientation, pressure of getting married (high, medium or low) and whether they decide to get married (Yes or No). After collecting those survey results, we change those categorical variables into numeric ordinal variables based on our benchmark to establish the final dataset. \textbf{2)} Randomly choose a sample set with size n and use this sample as training data to estimate the parameters in this model, and check the significance of those estimators, if the estimator $\beta_{i}$ is significant, that means its related independent variable is a significant factor in real life, otherwise, it's not.  \textbf{3)} The rest of the data can also be used as test data to check the robustness of the model, we input the value of those independent variables into the model to estimate the outcome, which is whether the individual i decide to get married, then compare the outcomes with the real outcome in the dataset to check the robustness of the model, which could continue testifying whether those factors in this model are significant in real life.
 \end{document}
