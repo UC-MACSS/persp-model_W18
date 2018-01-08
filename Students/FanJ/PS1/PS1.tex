@@ -118,13 +118,13 @@ Make your own model. (5 points).
 Since here the outcome variable is binary, I will use logistic regression to model the decision to get married. 
 \begin{equation}\label{model3}
 	%Pr(Y=1|X_{1}, X_{2}, ..., X_{K}) = F(\beta_0+\beta_1 X_{1}+\beta_{2} X_{2}+ \beta_{3} X_{3} ... + \beta_{k} X_{k} + \epsilon)
-	Pr(Y_i=1|X_{1i}, X_{2i}, ..., X_{Ki}) = F(\beta_0+\beta_1 X_{1i}+\beta_{2} X_{2i}+ \beta_{3} X_{3i} ... + \beta_{k} X_{ki} + \epsilon_i)
+	Pr(Y_i=1|X_{1i}, X_{2i}, ..., X_{Ki}) = F(\beta_0+\beta_1 X_{1i}+\beta_{2} X_{2i}+ \beta_{3} X_{3i} ... + \beta_{10} X_{10i} + \epsilon_i)
 \end{equation}
 where
 \begin{equation}
 	F(x) = \frac{1}{1+e^{-x}}
 \end{equation}
-Here, $Y$ is the outcome variable whose values 1 (get married) and 0 (not married). $X_1$ is age, a continuous numerical variable; $X_2$ is ethnicity, a categorical variable; $X_3$ is zipcode, treated as a categorical variable; $X_4$ is the number of years of higher education, a continuous variable; $X_5$ is the number of years of parental higher education, also a continuous variable; $X_6$ is whether the parents divorced, a binary variable; $X_7$ is the subject's current dating status, a categorical variable; $X_8$ is the subject's religion, a categorical variable; $X_9$ is the income level of the subject, a continuous variable. $\epsilon$, drawn from  is the error term, representing haphazard events that can prompt a person to make the decision, like the legalization of same-sex marriage. $\epsilon$ is drawn from a log-normal distribution $LN(0,\sigma^2)$. 
+Here, $Y$ is the outcome variable whose values 1 (get married) and 0 (not married). $X_1$ is age, a continuous numerical variable; $X_2$ is ethnicity, a categorical variable; $X_3$ is zipcode, treated as a categorical variable; $X_4$ is the number of years of higher education, a continuous variable; $X_5$ is the number of years of parental higher education, also a continuous variable; $X_6$ is whether the parents divorced, a binary variable; $X_7$ is the subject's current dating status, a categorical variable; $X_8$ is the subject's religion, a categorical variable; $X_9$ is the income level of the subject, a continuous variable. $X_{10}$ is sexual orientation, a categorical variable, $\epsilon$, is the error term, representing haphazard events that can prompt a person to make the decision, like the legalization of same-sex marriage. $\epsilon$ is drawn from a log-normal distribution $LN(0,\sigma^2)$. 
 
 \textbf{Part (d).} \\
 The variables that could bear most significance, in my opinion, are age, income level of the subject, current dating status, and religion. The rest are supplementary control variables.
@@ -155,7 +155,7 @@ I chose the variables described in Part (a-c) based on my intuition and some lit
 \textbf{Part (f).} \\
 A test on the significance of these factors could be a regression run on the available census data, or, (since the dating status of the participant might be unavailable) a small scale survey. A preliminary logistic regression \eqref{model4} will not only tell us about the significance of the factors, but will also help us calibrate our model. 
 \begin{equation} \label{model4}
-Pr(Y_i^{'}=1|X_{1i}^{'}, X_{2i}^{'}, ..., X_{Ki}^{'}) = F(\beta_0^{'}+\beta_1^{'} X_{1i}^{'}+\beta_{2}^{'} X_{2i}^{'}+ \beta_{3}^{'} X_{3i}^{'} ... + \beta_{k}^{'} X_{ki}^{'} + \epsilon_i^{'})
+Pr(Y_i^{'}=1|X_{1i}^{'}, X_{2i}^{'}, ..., X_{Ki}^{'}) = F(\beta_0^{'}+\beta_1^{'} X_{1i}^{'}+\beta_{2}^{'} X_{2i}^{'}+ \beta_{3}^{'} X_{3i}^{'} ... + \beta_{10}^{'} X_{10i}^{'} + \epsilon_i^{'})
 \end{equation}
 Additionally, if we want to see if our model holds up against real-world data, we can simulate the data, using randomly generated $X_{1i}, X_{2i}, ..., X_{Ki}$ and $\epsilon$ with similar mean and variance to the survey data, to predict $Y_i$. Then we compare the simluated $Y_i$ with $Y_i^{'}$ and see if the two groups are significanly different. If not, then we can say model is somewhat robust.
 
