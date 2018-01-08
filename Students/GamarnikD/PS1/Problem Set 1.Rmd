@@ -1,0 +1,26 @@
+---
+title: "Problem Set 1"
+author: "Dan Gamarnik"
+date: "January 7, 2018"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+## Part 1.
+
+(a)-(b) The model I used is from "[What Makes an Agency Independent?](http://onlinelibrary.wiley.com/doi/10.1111/ajps.12161/abstract)" by Jennifer L Selin (2015) in the *American Journal of Political Science*. It looks at how independent government agencies are from Congress and the President in setting out policy. 
+
+(c)![()](/ProblemSets/PS1/eq1.jpg)  
+(d) 
+
+
+
+
+
+
+
+
+
+
+
+
