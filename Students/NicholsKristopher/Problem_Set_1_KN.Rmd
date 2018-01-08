@@ -28,7 +28,7 @@ Sharad Goel, Jake M. Hofman, Sébastien Lahaie, David M. Pennock, and Duncan J. 
 
 This model in particular is used to model movie's performance at the box offce.
 
-$$log(revenue) = $$ = $\beta_0$ + $\beta_1log(budget)$ + $\beta_2log(screens)$ + $\beta_3log(HSX)$ + 
+$log(revenue)$$ = $$\beta_0$ + $\beta_1log(budget)$ + $\beta_2log(screens)$ + $\beta_3log(HSX)$ + 
 $\epsilon$
 
 ## D
@@ -47,7 +47,10 @@ I think a feature that would be very beneficial for this model would be to incor
 
 ## A
 
-$Y_m$ = $\beta_0$ + $\beta_1(Religiosity)$ + $\beta_2(Age)$ + $\beta_3(Ideological Orientation)$ $+ $$\beta_4(Age of Parents When Married)$ + $\beta_5(ParentsInLifeYesOrNo)$ +  
+$Y$$_m$$ = $$\beta_0$ + $\beta_1(Religiosity)$ + $\beta_2(Age)$ + $\beta_3(Ideological Orientation)$ + $\beta_4(Age of Parents When Married)$ + $\beta_5(ParentsInLifeYesOrNo)$ +  
+$\epsilon$ 
+
+$Y$$_m$$_a$$_r$$_r$ = $\beta_0$ + $\beta_1(Age)$ + $\beta_2(Income)$ + $\beta_3(Compatibility)$ $\times\ $$\beta_4(DatingDuration)$ + 
 $\epsilon$ 
 
 $$m = $$ $$\begin{cases}1\quad if & Y > 0\\0 \quad if & Y < 0 \end{cases}$$
