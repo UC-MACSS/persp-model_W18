@@ -59,10 +59,10 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | Feb. 19 | M | Tree-based methods | JWHT Ch. 8 | PS6 |
 | Feb. 21 | W | Tree-based methods | JWHT Ch. 8 |  |
 | Feb. 26 | M | Support vector machines | JWHT Ch. 9 | PS7 |
-| Feb. 28 | W | Support vector machines | ISL Ch 9 |  |
-| Mar.  5 | M | Neural networks | Notes | PS9 |
+| Feb. 28 | W | Support vector machines | JWHT Ch 9 |  |
+| Mar.  5 | M | Neural networks | Notes | PS8 |
 | Mar.  7 | W | Neural networks | Notes |     |
-| Mar. 12 | M |                 |       | PS10 |
+| Mar. 12 | M |                 |       | PS9 |
 
 ## References and Readings ##
 
@@ -71,6 +71,3 @@ All readings are required unless otherwise noted. Adjustments can be made throug
 * James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). [*An Introduction to Statistical Learning*](http://link.springer.com.proxy.uchicago.edu/book/10.1007%2F978-1-4614-7138-7). New York: Springer.
 * VanderPlas, Jake. (2016). [*Python Data Science Handbook*](http://proquestcombo.safaribooksonline.com.proxy.uchicago.edu/book/programming/python/9781491912126). O'Reilly Media, Inc.
 * Varian, Hal R., "[How to Build an Economic Model in Your Spare Time](http://people.ischool.berkeley.edu/~hal/Papers/how.pdf)," in *Passion and Craft: Economists at Work*, eds. Michael Szenberg, University of Michigan Press, 1997.
-
-
-
