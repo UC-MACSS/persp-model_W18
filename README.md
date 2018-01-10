@@ -4,11 +4,11 @@
 |--------------|--------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------------------------|
 | Email | rwevans@uchicago.edu | cernhofer@gmail.com | sushmitavgopalan@uchicago.edu |
 | Office | 208 McGiffert House |  |  |
-| Office Hours | T 9:30-11:30am |  |  |
+| Office Hours | T 9:30-11:30am | Th 1:00-3:00pm |  |
 | GitHub | [rickecon](https://github.com/rickecon) | [cernhofer](https://github.com/cernhofer) | [sushmitavgopalan16](https://github.com/sushmitavgopalan16) |
 
 * **Meeting day/time**: MW 11:30am-1:20pm, Saieh Hall, Room 247
-* **Lab session**: TBA
+* **Lab session**: W 4:30 - 5:20pm, Saieh Hall, Room 247
 * Office hours also available by appointment
 
 ## Course description
@@ -24,6 +24,16 @@ You will have 9 problem sets throughout the term. I will drop everybody's lowest
 | Problem Sets     | 9        | 10     | 80           | 80%     |
 | Midterm exam     | 1        | 20     | 20           | 20%     |
 | **Total Points** | --       | --     | 100          | 100%    |
+
+Late problem sets will be penalized 2 points for every hour they are late. For example, if an assignment is due on Monday at 11:30am, the following points will be deducted based on the time stamp of the last commit.
+
+| Example PR last commit | points deducted |
+| ---------------------- | --------------- |
+| 11:31am to 12:30pm     | -2 points       |
+| 12:31pm to 1:30pm      | -4 points       |
+| 1:31pm to 2:30pm       | -6 points       |
+| 2:31pm to 3:30pm       | -8 points       |
+| 3:30pm and beyond      | -10 points (no credit) |
 
 ## Disability services
 
