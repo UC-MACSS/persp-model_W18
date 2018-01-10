@@ -48,7 +48,7 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | Jan. 10 | W | Maximum likelihood estimation | Notes |  |
 | Jan. 15 | M | **No class (Martin Luther King, Jr. Day)** |  |  |
 | Jan. 17 | W | Maximum likelihood estimation | Notes |  |
-| Jan. 22 | M | Generalized method of moments | Notes | PS2 |
+| Jan. 22 | M | Generalized method of moments | Notes | [PS2](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS2/PS2.pdf) |
 | Jan. 24 | W | Generalized method of moments | Notes |  |
 | Jan. 29 | M | Statistical learning and linear regression | JWHT Ch. 2, 3 | PS3 |
 | Jan. 31 | W | Classification and logistic regression | JWHT Ch. 4 |  |
