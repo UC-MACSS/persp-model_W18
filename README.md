@@ -4,7 +4,7 @@
 |--------------|--------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------------------------|
 | Email | rwevans@uchicago.edu | cernhofer@gmail.com | sushmitavgopalan@uchicago.edu |
 | Office | 208 McGiffert House |  |  |
-| Office Hours | T 9:30-11:30am | Th 1:00-3:00pm |  |
+| Office Hours | T 9:30-11:30am | Th 1:00-3:00pm | Th 9:00-11:00am  |
 | GitHub | [rickecon](https://github.com/rickecon) | [cernhofer](https://github.com/cernhofer) | [sushmitavgopalan16](https://github.com/sushmitavgopalan16) |
 
 * **Meeting day/time**: MW 11:30am-1:20pm, Saieh Hall, Room 247
