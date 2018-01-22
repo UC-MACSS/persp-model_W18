@@ -1,0 +1,142 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  MACS 30010, Dr. Evans \\
+  Jie Heng
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 1}
+
+\vspace{2mm}
+\textbf{Part a, b \& c.} \\
+The statistic model is chosen from Mads Meier Jæger and Richard Breen's article: "A Dynamic Model of Cultural Reproduction." The detailed citation is: Jæger, Mads Meier, and Richard Breen. 2016. "A Dynamic Model of Cultural Reproduction." American Journal Of Sociology 121, no. 4: 1079-1115.EBSCOhost (accessed January 7, 2018). 
+
+Here is the equation:
+\begin{equation*}
+  \MakeUppercase{c}_{c} = \beta_{1}\theta_{p}+  \beta_{2}\MakeUppercase{s}_{p} + \beta_{3}\MakeUppercase{x}_{p} + \beta_{4}\MakeUppercase{a}_{c} + \MakeUppercase{l}_{c}
+\end{equation*}
+
+The model describes how parents transmit cultural capital to their child (the model only considers one child situation). The subscripts c and p, respectively, represent the child and parents. $\MakeUppercase{c}_{c}$ means the child’s cultural capital. $\MakeUppercase{s}_{p}$ denotes parents’ total stock of cultural capital and $\theta_{p}$ the amount that they invest in the child. $\MakeUppercase{x}_{p}$ means parents' socioeconomic resources. Child's academic ability is demonstrated as $\MakeUppercase{a}_{c}$, which scholars believe is a constant. $\MakeUppercase{l}_{c}$ denotes child's luck. 
+
+\textbf{Part d.} \\
+The endogenous variable is child's cultural capital($\MakeUppercase{c}_{c}$). The exogenous variables are child's luck($\MakeUppercase{l}_{c}$), child's academic ability($\MakeUppercase{a}_{c}$), parents' socioeconomic resources($\MakeUppercase{x}_{p}$), parents’ total stock of cultural capital($\MakeUppercase{s}_{p}$) and the amount of cultural capital parents invest on the child ($\theta_{p}$).
+
+\textbf{Part e.} \\
+The model is a dynamic, linear and stochastic model. As the scholars describes in the title, it is a dynamic model. In this model, parents might change their cultural capital investment overtime. Factors influence Parents investment behavior each time include the outcome of their previous investment, limitation on the resources and decisions on developing children’s other skills. The model is linear because it is a linear equation. And since the child's luck is a random variable, the model is stochastic.
+
+\textbf{Part f.} \\
+The scholars could improve the model by considering the variable: child and parents' relation. As child passively receive the cultural capital, if child and parents' relations are not good, the amount of cultural capital the child takes from parents may be negatively influenced, which means the output of this model could differ.  
+
+\newpage
+\noindent\textbf{Problem 2}
+
+\textbf{Part a, b \& c.} \\
+The model I designed is a logistic regression model.
+\begin{equation*}
+  \MakeUppercase{p}(\MakeUppercase{y}_{i}|\MakeUppercase{x}_{1i},\MakeUppercase{x}_{2i}...\MakeUppercase{x}_{8i}) =\MakeUppercase{f}(\beta_{1} \MakeUppercase{x}_{1i}+  \beta_{2}\MakeUppercase{x}_{2i} + \beta_{3}\MakeUppercase{x}_{3i} + \beta_{4}\MakeUppercase{x}_{4i} + \beta_{5}\MakeUppercase{x}_{5i} + 
+  \beta_{6}\MakeUppercase{x}_{6i} + \beta_{7}\MakeUppercase{x}_{7i} + \beta_{8}\MakeUppercase{x}_{8i} + \epsilon_{i})
+\end{equation*}
+where F(x):
+\begin{equation*}
+F(x)=  \frac{1}{1+e^{-x}}
+\end{equation*}
+The endogenous variable is Y$_{i}$, whose value is 1(the individual i decides to get married) or 0(the individual i decides not to get married).
+
+The exogenous variables are as followed:
+$\MakeUppercase{x}_{1i}$: the age of individual i, a continuous variable; $\MakeUppercase{x}_{2i}$: the gender of individual i, a categorical variable;
+$\MakeUppercase{x}_{3i}$: the current dating status of individual i, a categorical variable;
+$\MakeUppercase{x}_{4i}$: the race of individual i, a categorical variable; $\MakeUppercase{x}_{5i}$: the religion of individual i, a categorical variable;
+$\MakeUppercase{x}_{6i}$: the sexual orientation of individual i, a categorical variable;
+$\MakeUppercase{x}_{7i}$: the education attainment of individual i, a categorical variable.
+$\MakeUppercase{x}_{8i}$: the income level of individual i, an categorical variable; $\epsilon$, an error term, representing rare events that make an individual get married.
+
+\textbf{Part d.} \\
+The key variables are age, current dating status, and religion. 
+
+\textbf{Part e.} \\
+The reasons I choose these three variables are as followed. 1)Older people are more likely to get married than younger people. 2)People who are in a stable relationship are more willing to get married. 3)Some religions might prompt believers to get married or prevent believers from getting married.
+
+\textbf{Part f.} \\
+To test the factors I have chose, I would do an online anonymous survey. The survey will ask participants age, gender, current dating status, education attainment, race, religion, sexual orientation, income level and whether they decide to get married. The data will be used to run regression and estimate the coefficients in the model. If a parameter is significant, then the variable is significant. Besides, I would also compare the results of the survey with the outcome of simulation to test the explanatory power of this model. If the differences are not significant, then the model is robust.
+\end{document}
+
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
