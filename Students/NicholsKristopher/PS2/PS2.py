@@ -20,7 +20,7 @@ if graph:
     current_path    = string, path name of current directory
         year_vec    = (lf_years,) vector, years from beg_year to
                   beg_year + lf_years
-    individual  = integer in [0, numdraws-1], index of particular series
+    individual  = integer in [0, number of draws -1], index of particular series
                   to plot
     output_fld = string, folder in current path to save files
     output_direct  = string, total path of images folder
