@@ -4,7 +4,7 @@
 |--------------|--------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------------------------|
 | Email | rwevans@uchicago.edu | cernhofer@gmail.com | sushmitavgopalan@uchicago.edu |
 | Office | 208 McGiffert House |  |  |
-| Office Hours | T 9:30-11:30am | Th 1:00-3:00pm |  |
+| Office Hours | T 9:30-11:30am | Th 1:00-3:00pm | Th 9:00-11:00am  |
 | GitHub | [rickecon](https://github.com/rickecon) | [cernhofer](https://github.com/cernhofer) | [sushmitavgopalan16](https://github.com/sushmitavgopalan16) |
 
 * **Meeting day/time**: MW 11:30am-1:20pm, Saieh Hall, Room 247
@@ -45,13 +45,13 @@ If you need any special accommodations, please provide us with a copy of your Ac
 |------------|-------|---------------------------------------------------------|--------------|------------------------------|
 | Jan.  3 | W | Model/theory building | [V1997](http://people.ischool.berkeley.edu/~hal/Papers/how.pdf) |  |
 | Jan.  8 | M | Data generating process |  | [PS1](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS1/PS1.pdf) |
-| Jan. 10 | W | Maximum likelihood estimation | Notes |  |
+| Jan. 10 | W | Maximum likelihood estimation | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/MLE/MLest.ipynb) |  |
 | Jan. 15 | M | **No class (Martin Luther King, Jr. Day)** |  |  |
-| Jan. 17 | W | Maximum likelihood estimation | Notes |  |
-| Jan. 22 | M | Generalized method of moments | Notes | [PS2](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS2/PS2.pdf) |
-| Jan. 24 | W | Generalized method of moments | Notes |  |
-| Jan. 29 | M | Statistical learning and linear regression | JWHT Ch. 2, 3 | PS3 |
-| Jan. 31 | W | Classification and logistic regression | JWHT Ch. 4 |  |
+| Jan. 17 | W | Generalized method of moments | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/GMM/GMMest.ipynb) |  |
+| Jan. 22 | M | Generalized method of moments |  | [PS2](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS2/PS2.pdf) |
+| Jan. 24 | W | Statistical learning and linear regression | JWHT Ch. 2, 3, [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/LinRegress/LinRegress.ipynb) | [PS3](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS3/PS3.pdf) |
+| Jan. 29 | M | Classification and logistic regression | JWHT Ch. 4 |    |
+| Jan. 31 | W | Classification and logistic regression | Notes |  |
 | **Feb. 5** | **M** | **Evans Midterm** |  | PS4 |
 | Feb.  7 | W | Generalized linear models | Notes |  |
 | Feb. 12 | M | Resampling methods (cross-validation and bootstrapping) | JWHT Ch. 5 | PS5 |
