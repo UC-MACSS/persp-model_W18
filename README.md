@@ -50,9 +50,9 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | Jan. 17 | W | Generalized method of moments | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/GMM/GMMest.ipynb) |  |
 | Jan. 22 | M | Generalized method of moments |  | [PS2](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS2/PS2.pdf) |
 | Jan. 24 | W | Statistical learning and linear regression | JWHT Ch. 2, 3, [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/LinRegress/LinRegress.ipynb) | [PS3](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS3/PS3.pdf) |
-| Jan. 29 | M | Classification and logistic regression | JWHT Ch. 4 |    |
-| Jan. 31 | W | Classification and logistic regression | Notes |  |
-| **Feb. 5** | **M** | **Evans Midterm** |  | PS4 |
+| Jan. 29 | M | Classification and logistic regression | JWHT Chs. 2, 4 |    |
+| Jan. 31 | W | Classification and logistic regression | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/Classfcn1/KKNlogitLDA.ipynb) |  |
+| **Feb. 5** | **M** | **Evans Midterm** |  | [PS4](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS4/PS4.pdf) |
 | Feb.  7 | W | Generalized linear models | Notes |  |
 | Feb. 12 | M | Resampling methods (cross-validation and bootstrapping) | JWHT Ch. 5 | PS5 |
 | Feb. 14 | W | Nonlinear modeling | JWHT Ch. 7 |  |
