@@ -1,0 +1,143 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \# 1}} \\
+  MACS 30100, Dr. Evans \\
+  Xi Chen
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{1. Classify a model from a journal} \\
+
+\textbf{Part (a-b). Citation} \\
+
+Acconcia, A., Corsetti, G., \& Simonelli, S. (2014). Mafia and public spending: Evidence on the fiscal multiplier from a quasi-experiment.\emph{The American Economic Review, 104}(7), 2185-2209.\\
+
+\textbf{Part (c). Model} \\
+
+The following model estimates the spending multiplier relating the growth of per capita value added in a province to the year-on-year change in per capita spending on infrastructure in the same province. 
+\begin{equation*}
+  Y_{i,t} = \beta G_{i,t} + \alpha_{i} + \lambda_{t} + \gamma \mathbf{X}_{i,t} + v_{i,t} 
+\end{equation*}
+
+where $i$ denotes each province in Italy, and $t$ denotes the year;  $Y_{i,t}$ denotes the growth of per capita value added in a province; $G_{i,t}$ denotes the year-on-year change in per capita spending on infrastructure in the same province; the parameter $\beta$ measures the contemporaneous one-year government spending multiplier; $\alpha_{i}$ denotes the province fixed effect, which controls for national components of public investment and GDP common to all provinces; $\lambda_{t}$ denotes the year fixed effect, which control for monetary and fiscal policy at the national level; $\mathbf{X}$ denotes a vector of further control variables; $v_{i,t}$ denotes the error term. \\
+
+
+\textbf{Part (d). Variables} \\
+
+The $\mathbf{exogenous}$ $\mathbf{variables}$ are $G_{i,t}$, which is the year-on-year change in per capita spending on infrastructure in a province; $\alpha_{i}$, which is the province fixed effect; $\lambda_{t}$, which is the year fixed effect; $\mathbf{X}$, which represents the control variables including (i) Mafia-type association, (ii) extortion, (iii) Mafia-related murders, (iv) corruption, and (v) the number of corruption crimes reported to the judicial authority). The $\mathbf{endogenous}$ $\mathbf{variables}$ is $Y_{i,t}$, the growth of per capita value added in a province, which is also the output of the model.  \\
+
+\textbf{Part (e).} \\
+
+The model is static, linear, and stochastic. ``Static'' is because $Y_{i,t}$ only depends on the independent variables on time t. ``Linear'' is because there are no non-linear terms. ``Stochastic'' is because of the random error term. \\
+
+\textbf{Part (f).} \\
+
+One more control variable might be added into the model is the provincial government spending on public security. \\
+
+\noindent\textbf{2. Make your own model} \\
+
+\textbf{Part (a-c). Model} \\
+
+Since the outcome variable $Y_{i}$ is binary (\emph{1} or \emph{0}), I use logistic regression, and define $P$ as the probability of deciding to get married. Therefore, by definition, the inverse of the logistic function, g, is
+\begin{equation*}
+\begin{aligned}
+g(P(Y_{i}=1)) = ln(\frac{P(Y_{i}=1)}{1-P(Y_{i}=1)}) 
+        = \beta_{0} + \beta_{1} Age_{i} + \beta_{2} Sex_{i} + \beta_{3} Edu_{i} + \beta_{4} Ses_{i} \\ + \beta_{5} Bmi_{i} 
+        + \beta_{6} Race_{i} + \beta_{7} Status_{i} +  \beta_{8} Happy_{i} + \epsilon_{i}
+\end{aligned}
+\end{equation*}
+And 
+\begin{equation}
+Y_{i} = \left\{
+\begin{array}{ll}
+1 & \quad g(P(Y_{i}=1)) > 0 \\
+0 & \quad otherwise
+\end{array}
+\right.
+\end{equation}
+
+ where $Age_{i}$, a categorical variable, denotes individual i's age group; $Sex_{i}$, a categorical variable, denotes gender; $Edu_{i}$, a continuous variable, denotes the number of years of higher education; $Ses_{i}$, a categorical variable, denotes the socioeconomic status (High, Middle, Low); $Bmi_{i}$, a continuous variable, denotes the Body Mass Index; $Race_{i}$, a categorical variable, denotes the individual's race group; $Status_{i}$, a continuous variable, denotes the number of years in a current relationship (if he or she is single, it is zero); $Happy_{i}$, a continuous variable, denotes the self-perceived happiness or sense of satisfaction from a psychological scale; $\epsilon_{i}$ denotes the random error term. \\
+
+\textbf{Part (d). Key Factors} \\
+
+Among all the factors, I think the key ones would be age, gender, socioeconomic status, and the relationship status.  \\  
+
+\textbf{Part (e). Explanation} \\
+
+Firstly, I am going to explain the key factors. For $Age$, there are higher social pressure and/or peer pressure for older people if they haven't got married, so the older people would be more likely to decide to get married. For $Sex$, compared to male, female may be more likely to have plans or have earlier plans for marriage because they have to consider the plan of having a baby. For $Ses$, getting married is a big decision in one's life, so his/her socioeconomic status would play an important role in such big decision. For $Status$, it is obvious that when an individual has a healthy relationship which lasts for a long time, the more likely he or she will decide to get married. Secondly, except for these key factors, there are still some other factors may make a difference. For example, past studies have showed a significant relationship between education level and the number of children, but it is hard to tell what would the relationship be between education and marriage. BMI score could also affect the possibility of deciding to get married, and my predication is the healthier the BMI score one has, the high probability he or she will decide to get married. Race may affect one's decision due to the cultural or family reasons. Psychological status may also influence one's decision of getting married. It could be the case that the happier single people may feel getting married less attractive because they find their status quo is good, and don't want to change. \\
+
+
+\textbf{Part (f). Preliminary Test} \\
+
+In order to see if the model make sense in real life, I could download some open-source census data, such as from the website of the labor force department. For the purpose of preliminary test, the size of the data would be small. Then I could use these small samples to conduct the preliminary test with the real-world data. However, these census data may not provide all the information I need. Another solution could be collecting data by carrying out a survey study with several participants. The survey would collect all the required information. With these data, I could conduct statistical analysis, such as OLS, to determine which factors are significant. 
+
+
+\end{document}
+
