@@ -1,0 +1,74 @@
+---
+title: "Problem Set #1"
+author: "Kristopher Nichols"
+date: "January 8, 2018"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r}
+knitr:: opts_chunk$set(cache=FALSE)
+```
+
+# 1
+## A
+
+Predicting consumer behavior with Web search
+This study looks to evaluate the efficacy of web search data as a predictor of near future events, in the absence of other data. Specifically, this study looks to predict the weekend box-office revenue for feature films, first-month sales of video games, and the rank of songs on the Billboard Hot 100 chart using search data associated with related media.
+
+## B
+Predicting consumer behavior with Web search
+Sharad Goel, Jake M. Hofman, Sébastien Lahaie, David M. Pennock, and Duncan J. Watts
+10.1073/pnas.1005962107
+
+[link](http://www.pnas.org/content/107/41/17486.full)
+
+## C
+
+This model in particular is used to model movie's performance at the box offce.
+
+$log(revenue)$$ = $$\beta_0$ + $\beta_1log(budget)$ + $\beta_2log(screens)$ + $\beta_3log(HSX)$ + 
+$\epsilon$
+
+## D
+
+The log of the revenue is specified by log(revenue), which acts as the endogenous variable, while the log of the budget, screens, and Hollywood Stock Exchange act as the exogenous variables. 
+
+## E
+
+The model is statis as it does not involves an element of time, linear, and stochastic due to its inclusion of an error term.
+
+## F
+
+I think a feature that would be very beneficial for this model would be to incorporate the genre of the movie  that the model is being applied to and the corresponding genre’s prevalence in the boxoffice. 
+
+# 2
+
+## A
+
+$Y$$_m$$ = $$\beta_0$ + $\beta_1(Religiosity)$ + $\beta_2(Age)$ + $\beta_3(Ideological Orientation)$ + $\beta_4(Age of Parents When Married)$ + $\beta_5(ParentsInLifeYesOrNo)$ +  
+$\epsilon$ 
+
+$Y$$_m$$_a$$_r$$_r$ = $\beta_0$ + $\beta_1(Age)$ + $\beta_2(Income)$ + $\beta_3(Compatibility)$ $\times\ $$\beta_4(DatingDuration)$ + 
+$\epsilon$ 
+
+$$m = $$ $$\begin{cases}1\quad if & Y > 0\\0 \quad if & Y < 0 \end{cases}$$
+
+
+
+## C
+
+The data can be obtained from a number of census or other avenues.
+
+## D
+
+Religiosity is very important for marriage in very obvious ways the institution of marriage has been closely linked to religiosity since its inception and this likely still holds today. Ideological orientation should supplant political affiliation due to its greater generalizability, and because this variable may account for a portion of the relationship between these classical conservative views that religiosity may not account for. Lastly, due to the vast amount of psychological research detailing how instrumental early family life is in establishing relationships behavior later in life the two parental variables should be very important. 
+
+## E
+
+I chose these variables because I think they strike a good balance between generalizability and faith to prior research. I think that much of the research in psychology in general tends to be very USA-centric and think that by incorporating more abstract variables such as religiosity and ideology in place of type of religion and political affiliation this bias is minimized. 
+
+## F
+
+To run preliminary tests of this model would be very easy. Researchers could simply run online surveys through Qualtrics or SurveyMonkey with surveys which have been consistently vetted by the literature to measure these constructs and run regression analyses on the data.
