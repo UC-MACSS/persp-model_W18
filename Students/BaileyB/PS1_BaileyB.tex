@@ -1,0 +1,149 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#[1]}} \\
+  MACS 30100, Dr. Evans \\
+  Bethany Bailey
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 1} Classify a model from a journal.
+
+\textbf{Part (a). - (b).} O'Brien, Rourke L. "Redistribution and the New Fiscal Sociology: Race and the Progressivity of State and Local Taxes." \textit{American Journal of Sociology} 122, no 4 (2017). 1015-1049. \href{url}{https://doi.org/10.1086/690118}.
+
+\textbf{Part (c).} This article builds a model to predict the progressivity of U.S. state and local taxes. The model uses data from the Institute for Taxation and Economic Policy (ITEP) to calculate a Suits Index, which is a measure of tax progressivity.
+\begin{multline}
+  \Sigma_{s} = \beta_{0} + \beta_{1} \text{Latino}_{s} + \beta_{2} \text{Black}_{s} + \beta_{3} \text{Asian}_{s}+ \beta_{4} \text{Foreign}_{s} + \beta_{5} \text{Gini}_{s} + \\
+  \beta_{6} \text{income}_{s} + \beta_{7} \text{unemp}_{s} + \beta_{8} \text{poverty}_{s} + \beta_{9} \text{lfpr}_{s} + \beta_{10} \text{party}_{s} + \epsilon_{s}
+\end{multline}
+
+
+\textbf{Part (d).}
+
+Exogenous: 
+
+- $Latino_{s}$: perc Latino
+
+- $Black_{s}$: perc Black (non-Hispanic)
+	
+- $Asian_{s}$: perc Asian (non-Hispanic)
+	
+- $Foreign_{s}$: perc Foreign Born
+	
+- $Gini_{s}$: State-specific Gini coefficients
+	
+- $Income_{s}$: inflation-adjusted log total income per capital
+	
+- $unemp_{s}$: unemployment rate
+	
+- $poverty_{s}$: poverty rate
+	
+- $lfpr_{s}$: labor force participation rate
+	
+- $party_{s}$: Political party control (Republican control of the state house)
+
+Endogenous:
+
+- $\Sigma_{s}$: Progressivity of state and local taxes, operationalized by Suits index
+
+
+\textbf{Part (e).}
+
+Static vs. dynamic: This model is static because it is time-invariant; the Suits index is calculated at a static time. 
+
+Linear vs. nonlinear: This model is linear.
+
+Deterministic vs. stochastic: This model is stochastic because it includes the $\epsilon_s$ error term.
+
+\textbf{Part (f).}
+As we went over in class, when making models, in order to avoid multicollinearity, overfitting, etc., it is important to "Make things as simple as possible, but no simpler." Thus, I think this model may not need more variables, because it already contains 10 different variables to predict state and local tax code progressivity. However, one variable which could greatly influence the model would be size of tax base; that is, the number of tax-paying individuals in each region. If the tax base was extremely small, the sample used to calculate the variables would be too small to be significant; thus, the results could be greatly skewed. This should be taken into account when analyzing the model.
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 2} Make your own model.
+
+\textbf{Part (a).} 
+
+The below is a model of whether a U.S. individual decides to get married (models may differ by country because the factors that influence marriage differ by culture).
+\begin{multline}
+  P(married_{i} = 1 | \text{status}_i, ... , \text{legality}_i) = logit^{-1}(\alpha + \beta_{1} \text{status}_i + \beta_{2} \text{age}_i + \beta_{3} \text{religious}_i + \\
+  \beta_{4} \text{SES}_i + \beta_{5} \text{location}_i + \beta_{6} \text{gen}_i + \beta_{7} \text{legality}_i +\epsilon_{i}) 
+\end{multline}
+
+\textbf{Part (b).} In this model, the dependent endogenous variable, $married_i$, is an indicator variable denoting whether or not the person will get married (1=get married, 0=not get married). It is determined using an inverse logit function. 
+
+\textbf{Part (c).} This model is a complete data generating process. As long as we have enough well-collected data on all of the exogenous variables, we could create a model to simulate the endogenous variable.
+
+\textbf{Part (d).} The key factors that influence this outcome are the exogenous variables above: $status_i$ is a categorical variable that denotes relationship status (if someone is in a stable relationship, they might be more likely to get married); $age_i$ is a continuous variable that represents the log age of the individual (as a person gets older, they are increasingly likely to get married, but this effect diminishes over time, e.g. older people may be less likely to get married if they are not already); $religious_i$ is an indicator variable that codes whether a person is religious or not (religious people are probably more likely to get married); $SES_i$ is a variable that codes a person's socioeconomic status (people with more stable lives may be slightly less likely to get married); $location_i$ is a categorical variable that denotes whether a person is from an urban, suburban, or rural location (urban populations may be less likely to marry than suburban/rural); $gen_i$ is an indicator variable that denotes male or female; and $legality_i$ is an indicator variable that denotes whether or not marriage is legal for the individual.
+
+\textbf{Part (e).} Though other factors, such as race, educational attainment, whether or not one wants children, etc. also likely effect an individual's likelihood to marry, I did not include these factors because I believe they would influence the model in a way similar to other factors already included in the model; in other words, I believe these factors are closely correlated to other variables, such as SES, location, and religion. Thus, I would like to avoid multicollinearity and do not want to overcomplicate the model. The model above is my attempt to create the simplest possible model with the most predictive power.
+
+\textbf{Part (f).} In order to test whether my chosen factors are significant in real life, I could use data collected from the General Social Survey (GSS) and/or Census data and/or a small-scale survey. I would split the dataset into training and testing data, and run a regression on the training data to determine the model coefficients (hopefully, they would be significantly different than 0, which would indicate that they were significant). Then, I could see if I could predict the outcomes of the testing data using my trained model.
+
+\end{document}
