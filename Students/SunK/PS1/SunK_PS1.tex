@@ -1,0 +1,170 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  MACS 30000, Dr. Rick Evans \\
+  Kevin Sun \\
+  January 8, 2018 \\
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 1: Classify a model from a journal}
+
+\vspace{3mm}
+
+\noindent\textbf{Part (b). Find a theoretical or statistical model from a recently published article and give a detailed citation of the article.}
+
+\vspace{2mm}
+
+Elizabeth Hirsh and Youngjoo Cha, "For Law and Markets: Employment Discrimination Lawsuits, Market Performance, and Managerial Diversity," American Journal of Sociology 123, no. 4 (January 2018): 1117-1160.
+
+In this article, the authors estimate the impact of lawsuit resolutions (regarding discrimination) on subsequent changes in managerial sex and race composition of top publicly-traded companies.
+
+\vspace{2mm}
+
+\noindent\textbf{Part (c). Write down the mathematical or statistical model.}
+\begin{equation*}
+  \[y_{i,t} = x_{i,t}\beta + \alpha_{i} + \epsilon_{i,t}\]
+\end{equation*}
+This article uses a fixed-effects regression model where $y_{i,t}$ refers to the representation of each group of interest in the companies within the study. There are three groups of interest: white women, black women, and black men; the model estimates each groups level of representation at establishment $i$ in year $t$. $x_{i,t}$ is a vector of time-varying covariates for establishment $i$ in year $t$. These covariates are listed as the exogenous variables in (part d). $\beta$ is a vector of the regression coefficients that are estimated. $\alpha$ represents unobserved stable characteristics of establishment $i$. Finally, $\epsilon$ represents the random error term which is assumed to be normally distributed with mean zero and constant variance.
+
+\vspace{2mm}
+
+\noindent\textbf{Part (d). List the exogenous and endogenous variables.}
+
+\vspace{2mm}
+
+\textit{Exogenous variables}: lawsuit resolution (dummy), monetary award, negative market return, EEOC plaintiff, policy change mandates, media coverage, multiple, plaintiffs, multiple lawsuits, liberal court, federal contractor, and presidential administration.
+
+\textit{Endogenous variables}: managerial representation of white women, black women, and black men; this is estimated for both one-year and three-year lags.
+
+\vspace{2mm}
+
+\noindent\textbf{Part (e). Classify the model.}
+
+This is a dynamic, non-linear (log odds), and stochastic model. 
+
+\vspace{2mm}
+
+\noindent\textbf{Part (f). List variable or feature model is missing that might be valuable.}
+
+Social media coverage may be another valuable variable to consider (i.e. shares on Facebook, views on YouTube, retweets on Twitter, etc.)
+
+\pagebreak
+
+\noindent\textbf{Problem 2: Make your own model}
+
+\begin{equation*}
+\begin{split}
+\[Y^* = Pr(Y + 1| X) = \beta_{0} + \beta_{1}PSAMGEN + \beta_{2}EDUC + \beta_{3}CHLDRN + \beta_{4}AGE + \\ \beta_{5}AGEDIFF + \beta_{6}RURAL + \beta_{7}COHAB + \beta_{8}EMPLYD + \\ \beta_{9}REL + beta_{10}RACE\]
+\end{split}
+\end{equation*}
+
+Where PSAMGEN (1 = partner's gender same as own), CHLDRN (1 = couple desires children), RURAL (1 = couple lives in rural area), EMPLYD (1 = someone in the couple is employed), COHAB (1 = couple lives together) are dummy variables; and where, EDUC (education obtained in years), AGE, AGEDIFF (difference in years between partners), REL (one's religion), and RACE (one's race) are discrete variables. 
+
+\vspace{2mm}
+
+\noindent\textbf{Part (c and f). Make sure your model is a complete data generating process. How could you simulate data from your model given all the parameters and relationships? How could you do a preliminary test of whether your factors are significant in real life?}
+
+For this proposed model, data would be collected from two main sources. The first source would be utilizing census data; this would allow us to find the proportions of people in the entire population that are of a certain gender, have certain years of education, of a certain age, live in rural/urban areas, and are employed. From this, one would be able to obtain specific sub-populations (i.e. college-educated, Christian, Asian females who are not employed) marriage rates from census data. 
+
+To generate data for demographic information not included a census, a survey could be designed to capture information on variables of interest such as whether one's partners are the same gender as them or whether one lived with their current partner prior to marriage. These types of questions could asked alongside questions that asked respondents to report their marital status, gender, age, religion, and other demographic information that is of interest for the model and also reported in the census. 
+
+As a preliminary test, a survey would be administered to ask  people to anonymously report their gender, gender of their partner, education, num. of children desired, age, age of their partner, living location, whether they live with their partner, employment status, race, and religion. Additionally, respondents would be asked to report on extent to which each of these factors acts as pressure in their decision to get married (i.e. low, moderate, significant in their decision to get married). Finally, respondents would then report if they intend on getting married as a yes or no response. 
+
+The results from the survey could then be run against census data which provides us with information and nearly all cross-sections of the population and their marriage rates. 
+
+\vspace{2mm}
+
+\noindent\textbf{Part (d and e). What do you think are key factors that influence this outcome? Why did you decide on those factors and not others?}
+
+\textit{PSAMGEN}: Aside from government policy dictating relationships paradigms, social pressures and tolerance of same-sex relationships among one's immediate family, friend circle, and community circle would influence whether one in a same-sex relationship might consider getting married.
+
+\textit{EDUC}: One's education level and pursuit of more years of education may necessarily delay when they choose to get married. This was chosen in lieu of income given that education levels are highly correlated with income levels. 
+
+\textit{CHLDRN}: A person's decision on whether or not to have children would strongly impact their decision to get married given that marriage happens to be the government-sponsored family structure that incentivizes having children (i.e. tax-breaks, tax-credits). 
+
+\textit{AGE}: As people age the societal pressure to marry tends to increase.
+
+\textit{AGEDIFF}: The larger the age difference between couples, the greater the pressure may be against marriage.
+
+\textit{RURAL}: In less populated areas, the pool of potential partners is smaller which incentivizes people to marry earlier versus waiting for or searching for another potential partner.
+
+\textit{COHAB}: Living together with one's partner may be seen as a logical stepping stone into marriage.
+
+\textit{EMPLYD}: Employment and financial stability influences whether a couple decides to marry when considering costs of weddings, home ownership - often associated with marriage.
+
+\textit{REL}: People who practice certain religions are more inclined to marriage than others.
+
+\textit{RACE}: People of different races face varying pressures to marry depending on cultural, racial norms. 
+
+\vspace{2mm}
+
+\end{document}
+
