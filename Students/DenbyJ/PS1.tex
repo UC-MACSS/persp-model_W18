@@ -1,0 +1,116 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\begin{document}
+
+\begin{flushleft}
+	\textbf{\large{Problem Set \#1}} \\
+	MACSS 30100, Dr. Evans \\
+	Joseph Denby
+\end{flushleft}
+
+\vspace{3mm}
+
+\noindent\textbf{Problem 1.}
+
+a. Nave, G., Nadler, A., Zava, D., \& Camerer, C. (2017). Single-Dose Testosterone Administration Impairs Cognitive Reflection in Men. Psychological Science, 28(10), 1398–1407. http://doi.org/10.1177/0956797617709592 
+
+b.
+\begin{equation*}
+\begin{aligned}
+  CRTScore = \beta_0 + \beta_1Testosterone + \beta_2Androstenedione \\ 
+  + \beta_3DHT + \beta_4Progesterone170H + \beta_5MathScore + \epsilon
+\end{aligned}
+\end{equation*}
+
+c. \textit{Testosterone, Androstenedione, DHT, Progesterone}170\textit{H,} and \textit{MathScore} are all exogenous variables, since they are supplied to the model as outside parameters. \textit{CRTScore} is an endogenous variable, since it is meant to be determined within the model itself.
+
+d. This model is static, since there is no temporal component, linear (it is a straightforward linear regression model), and stochastic, as there is a random error term included.
+
+f. I think this model could benefit from the inclusion of some temporal variable, since the effects of testosterone, androstenedione, DHT, etc., administration on Cognitive Reflection Test scores are sure to diminish over time. 
+
+\vspace{3mm}
+
+\noindent\textbf{Problem 2.}
+
+a. 
+\begin{equation*}
+\begin{aligned}
+  Marry^* = \beta_0 + \beta_1age + \beta_2income + \beta_3haspartner(relationshiplength) + \epsilon
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+Marry = \begin{cases}1, \, \text{if} \, Marry^* > 70 \\ 0, \, \text{otherwise} \end{cases}
+\end{equation*}
+
+b.
+I think age, income and, if one has a partner, the length of time one has been with that partner are the key factors that influence one's decision whether get married. Specifically, I expect one's likelihood to marry to increase with age, income, and, if one has a partner, the length of one's relationship. 
+
+c.
+To me, I see these factors as the most pertinent to one's decision about marriage; there may be other components to one's decision (e.g., religion, race, ethnicity, location, etc.), but I am more interested in the variables I have included, and I am looking to use them to build an effective yet simple model.  So, in the spirit of keeping the model parsimonious, I chose to exclude any variables besides those I've included.
+
+d.
+I could do a preliminary check on my model by running a regression analysis on some demographic data. Given an individual's marital status, age, income, relationship status, and length of relationship at $t_0$, I ought to be able to predict (with a reasonable degree of accuracy) their marital status at $t_1$. From the census or another survey-based dataset, I could run a regression analysis for my model as specified and determine how accurate my model is. 
+\end{document}
+
