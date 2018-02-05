@@ -1,0 +1,86 @@
+---
+title: "Assignment 2"
+output: github_notebook
+author: Sumer Vaid 
+---
+
+```{r}
+library("dplyr")
+library("ggplot2")
+library("ggfortify")
+install.packages("stat4")
+install.packages("bbmle")
+library("bbmle")
+library("stats4")
+install.packages("lmtest")
+library("lmtest")
+data<-data.frame(read.table("incomes.txt"))
+```
+
+First, we define the function that takes in the parameters and returns the log likelihood value below: 
+```{r}
+ll_pdf<-function(vector){
+  pdf_vals=dlnorm(data$V1, meanlog = vector[1], sdlog = vector[2])
+  log_pdf_vals=log(pdf_vals)
+  log.lik.val=sum(log_pdf_vals)
+  return(log.lik.val)
+}
+```
+
+
+Now we plot the requisite histogram with 30 bins below: 
+```{r}
+Incomes_Hist=ggplot(data, aes(x=V1))+geom_histogram(aes(y=..density..))+xlab("Incomes")+
+  xlim(0, max(data$V1))+ylab("Probability")
+```
+
+```{r}
+lnpdf<-ggdistribution(dlnorm, seq(0, 150000), mean = 11, sd = 0.5) #plotting the density distribution with requisite parameters
+```
+
+Below, we input the parameters into the defined function to yield the log likelihood. 
+```{r}
+vector<-c(11,0.5) #creating a vector of mean and SD  to input into pdf function
+ll_pdf(vector) #inputting the mean and SD values into the custom function
+```
+
+Below, we use the minimizer to find the set of parameters that maximize the parameters:
+```{r}
+fit1<-optim(c(11,0.5), fn=ll_pdf, method="BFGS", control=list(fnscale=-1), hessian = TRUE)
+inv_cov<-fit1$hessian
+inverse_matrix<-solve(inv_cov)
+```
+
+Now we plot the updated histogram overlayed with both the probability density functions. 
+```{r}
+Incomes_Hist_lines=ggplot(data,aes(x=V1))+geom_histogram(aes(y=..density..))+xlab("Incomes")+stat_function(fun = dlnorm, args = list(meanlog = 11, sdlog= 0.5), size=1, color='red')+stat_function(fun=dlnorm, args=list(mean=11.359, sd=0.2081824), color='blue')+xlim(0, max(data$V1))
+print(Incomes_Hist_lines)
+
+```
+=
+Below, we calculate the likelihood ratio test for the two models and find the probability values for the requisite incomes. 
+```{r}
+MLEvals<-c(11.35, 0.208)
+model1<-ll_pdf(vector)
+model2<-ll_pdf(MLEvals)
+lr.test(-2241.9076275, -2385.856997)
+plnorm(100000, mean=11.359, sd=0.2081824, lower.tail = FALSE)
+plnorm(75000, mean=11.359, sd=0.2081824, lower.tail=TRUE)
+```
+
+Question 2
+```{r}
+sick<-read.csv("sick.txt")
+vector1<-c(1,0,0,0,0,0)
+regression_pdf<-function(vector1, sick){
+  error=sick$sick-(vector1[1]+vector1[2]*sick$age+vector1[3]*sick$children+vector1[4]*sick$avgtemp_winter)
+  pdf_vals=dnorm(error, mean= vector1[5], sd = vector1[6])
+  log_pdf_vals=log(pdf_vals)
+  log.lik.val=sum(-log_pdf_vals)
+  return(log.lik.val)
+}
+regression_pdf(vector1)
+fit2<-optim(c(1,0,0,0,0,0), fn=regression_pdf, method="BFGS", control=list(fnscale=-1), hessian = TRUE)
+
+```
+
