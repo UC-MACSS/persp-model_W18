@@ -4,11 +4,11 @@
 |--------------|--------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------------------------|
 | Email | rwevans@uchicago.edu | cernhofer@gmail.com | sushmitavgopalan@uchicago.edu |
 | Office | 208 McGiffert House |  |  |
-| Office Hours | T 9:30-11:30am |  |  |
+| Office Hours | T 9:30-11:30am | Th 1:00-3:00pm | Th 9:00-11:00am  |
 | GitHub | [rickecon](https://github.com/rickecon) | [cernhofer](https://github.com/cernhofer) | [sushmitavgopalan16](https://github.com/sushmitavgopalan16) |
 
 * **Meeting day/time**: MW 11:30am-1:20pm, Saieh Hall, Room 247
-* **Lab session**: TBA
+* **Lab session**: W 4:30 - 5:20pm, Saieh Hall, Room 247
 * Office hours also available by appointment
 
 ## Course description
@@ -25,6 +25,16 @@ You will have 9 problem sets throughout the term. I will drop everybody's lowest
 | Midterm exam     | 1        | 20     | 20           | 20%     |
 | **Total Points** | --       | --     | 100          | 100%    |
 
+Late problem sets will be penalized 2 points for every hour they are late. For example, if an assignment is due on Monday at 11:30am, the following points will be deducted based on the time stamp of the last commit.
+
+| Example PR last commit | points deducted |
+| ---------------------- | --------------- |
+| 11:31am to 12:30pm     | -2 points       |
+| 12:31pm to 1:30pm      | -4 points       |
+| 1:31pm to 2:30pm       | -6 points       |
+| 2:31pm to 3:30pm       | -8 points       |
+| 3:30pm and beyond      | -10 points (no credit) |
+
 ## Disability services
 
 If you need any special accommodations, please provide us with a copy of your Accommodation Determination Letter (provided to you by the Student Disability Services office) as soon as possible so that you may discuss with me how your accommodations may be implemented in this course.
@@ -35,24 +45,24 @@ If you need any special accommodations, please provide us with a copy of your Ac
 |------------|-------|---------------------------------------------------------|--------------|------------------------------|
 | Jan.  3 | W | Model/theory building | [V1997](http://people.ischool.berkeley.edu/~hal/Papers/how.pdf) |  |
 | Jan.  8 | M | Data generating process |  | [PS1](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS1/PS1.pdf) |
-| Jan. 10 | W | Maximum likelihood estimation | Notes |  |
+| Jan. 10 | W | Maximum likelihood estimation | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/MLE/MLest.ipynb) |  |
 | Jan. 15 | M | **No class (Martin Luther King, Jr. Day)** |  |  |
-| Jan. 17 | W | Maximum likelihood estimation | Notes |  |
-| Jan. 22 | M | Generalized method of moments | Notes | PS2 |
-| Jan. 24 | W | Generalized method of moments | Notes |  |
-| Jan. 29 | M | Statistical learning and linear regression | JWHT Ch. 2, 3 | PS3 |
-| Jan. 31 | W | Classification and logistic regression | JWHT Ch. 4 |  |
-| **Feb. 5** | **M** | **Evans Midterm** |  | PS4 |
+| Jan. 17 | W | Generalized method of moments | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/GMM/GMMest.ipynb) |  |
+| Jan. 22 | M | Generalized method of moments |  | [PS2](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS2/PS2.pdf) |
+| Jan. 24 | W | Statistical learning and linear regression | JWHT Ch. 2, 3, [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/LinRegress/LinRegress.ipynb) | [PS3](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS3/PS3.pdf) |
+| Jan. 29 | M | Classification and logistic regression | JWHT Chs. 2, 4 |    |
+| Jan. 31 | W | Classification and logistic regression | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/Classfcn1/KKNlogitLDA.ipynb) |  |
+| **Feb. 5** | **M** | **Evans Midterm** |  | [PS4](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS4/PS4.pdf) |
 | Feb.  7 | W | Generalized linear models | Notes |  |
 | Feb. 12 | M | Resampling methods (cross-validation and bootstrapping) | JWHT Ch. 5 | PS5 |
 | Feb. 14 | W | Nonlinear modeling | JWHT Ch. 7 |  |
 | Feb. 19 | M | Tree-based methods | JWHT Ch. 8 | PS6 |
 | Feb. 21 | W | Tree-based methods | JWHT Ch. 8 |  |
 | Feb. 26 | M | Support vector machines | JWHT Ch. 9 | PS7 |
-| Feb. 28 | W | Support vector machines | ISL Ch 9 |  |
-| Mar.  5 | M | Neural networks | Notes | PS9 |
+| Feb. 28 | W | Support vector machines | JWHT Ch 9 |  |
+| Mar.  5 | M | Neural networks | Notes | PS8 |
 | Mar.  7 | W | Neural networks | Notes |     |
-| Mar. 12 | M |                 |       | PS10 |
+| Mar. 12 | M |                 |       | PS9 |
 
 ## References and Readings ##
 
@@ -61,6 +71,3 @@ All readings are required unless otherwise noted. Adjustments can be made throug
 * James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). [*An Introduction to Statistical Learning*](http://link.springer.com.proxy.uchicago.edu/book/10.1007%2F978-1-4614-7138-7). New York: Springer.
 * VanderPlas, Jake. (2016). [*Python Data Science Handbook*](http://proquestcombo.safaribooksonline.com.proxy.uchicago.edu/book/programming/python/9781491912126). O'Reilly Media, Inc.
 * Varian, Hal R., "[How to Build an Economic Model in Your Spare Time](http://people.ischool.berkeley.edu/~hal/Papers/how.pdf)," in *Passion and Craft: Economists at Work*, eds. Michael Szenberg, University of Michigan Press, 1997.
-
-
-
