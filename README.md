@@ -17,13 +17,13 @@ Students are often well trained in the details of specific models relevant to th
 
 ## Grades
 
-You will have 9 problem sets throughout the term. I will drop everybody's lowest problem set score. For this reason, problem sets will only account for 80 percent of your grade.
+You will have 8 problem sets throughout the term. I will drop everybody's lowest problem set score. For this reason, problem sets will only account for 80 percent of your grade.
 
 | Assignment       | Quantity | Points | Total Points | Percent |
 |------------------|----------|--------|--------------|---------|
-| Problem Sets     | 9        | 10     | 80           | 80%     |
-| Midterm exam     | 1        | 20     | 20           | 20%     |
-| **Total Points** | --       | --     | 100          | 100%    |
+| Problem Sets     | 8        | 10     | 70           | 77.8%     |
+| Midterm exam     | 1        | 20     | 20           | 22.2%     |
+| **Total Points** | --       | --     | 90           | 100%    |
 
 Late problem sets will be penalized 2 points for every hour they are late. For example, if an assignment is due on Monday at 11:30am, the following points will be deducted based on the time stamp of the last commit.
 
@@ -53,16 +53,16 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | Jan. 29 | M | Classification and logistic regression | JWHT Chs. 2, 4 |    |
 | Jan. 31 | W | Classification and logistic regression | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/Classfcn1/KKNlogitLDA.ipynb) |  |
 | **Feb. 5** | **M** | **Evans Midterm** |  | [PS4](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS4/PS4.pdf) |
-| Feb.  7 | W | Generalized linear models | Notes |  |
-| Feb. 12 | M | Resampling methods (cross-validation and bootstrapping) | JWHT Ch. 5 | PS5 |
-| Feb. 14 | W | Nonlinear modeling | JWHT Ch. 7 |  |
-| Feb. 19 | M | Tree-based methods | JWHT Ch. 8 | PS6 |
+| Feb.  7 | W | Generalized linear models | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/GLMs/GLMest.ipynb) |  |
+| Feb. 12 | M | Resampling methods (cross-validation and bootstrapping) | JWHT Ch. 5, [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/Resampling/Resampling.ipynb) |  |
+| Feb. 14 | W | Nonlinear modeling | JWHT Ch. 7 |     |
+| Feb. 19 | M | Tree-based methods | JWHT Ch. 8 | [PS5](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS5/PS5.pdf) |
 | Feb. 21 | W | Tree-based methods | JWHT Ch. 8 |  |
-| Feb. 26 | M | Support vector machines | JWHT Ch. 9 | PS7 |
+| Feb. 26 | M | Support vector machines | JWHT Ch. 9 | PS6 |
 | Feb. 28 | W | Support vector machines | JWHT Ch 9 |  |
-| Mar.  5 | M | Neural networks | Notes | PS8 |
+| Mar.  5 | M | Neural networks | Notes | PS7 |
 | Mar.  7 | W | Neural networks | Notes |     |
-| Mar. 12 | M |                 |       | PS9 |
+| Mar. 12 | M |                 |       | PS8 |
 
 ## References and Readings ##
 
