@@ -1,0 +1,119 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  MACS 30100, Dr. Evans \\
+  Donghai YU
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 1} Classify a model from a journal. (5 points)
+\noindent\\\textbf{Part (a).} 
+\\Here, I select an equation from Professor Yu XIE's (Princeton University) article, Assortative Mating without Assortative Preference.
+
+\noindent\\\textbf{Part (b).} 
+\\Full Citation: Xie, Yu (2015) "Assortative Mating without Assortative Preference." \textit{Proceedings of National Academy Sciences}, 112:5974–-5978.
+
+\noindent\\\textbf{Part (c).} Mathematical Model:
+\begin{equation*}
+  U_{ij}^{m} = \alpha_{0} + \alpha_{1}X_{j}^{f}
+\end{equation*}
+
+\noindent\\\textbf{Part (d).} 
+\\The \textbf{exogenous variable} is $X_{j}^{f}$ the mate desirability, a unidimensional attribute of potential marriage partners. The \textbf{endogenous variable} is $U_{ij}^{m}$ the utility from marrying him/her independently, ie, $U_{ij}^{m}$ gives $j$ male's utility from marriying the $i$ female. 
+
+\noindent\\\textbf{Part (e).} 
+\\The model is \textbf{static}, \textbf{non-linear}, and \textbf{deterministic}. 
+
+\noindent\\\textbf{Part (f).} 
+\\I think age as a variable, if added, can make this model more robust, because one's age could play an important role in choosing a partner. In this case, age could have significant influence on the results, so I would suggest the author to add age in the model. 
+
+\pagebreak
+\noindent\\\textbf{Problem 2} Make your own model. (5 points)
+\noindent\\\textbf{Part (a).} 
+\begin{equation*}
+  Y_{i} = \beta_{0} + \beta_{1}partner_{i} + \beta_{2}age_{i} + \beta_{3}education_{i} + \beta_{4}income_{i}
+\end{equation*}
+
+\noindent\\\textbf{Part (b).}
+\\\textbf{$Y_{i}$} is the dependent endogenous variable where when $Y_{i}$ = 1, people get married, and when $Y_{i}$ = 0, people do not get married. The exogenous variables includes $\beta_{1}partner_{i}$ whether one has a partner, $\beta_{2}age_{i}$ age, $\beta_{3}education_{i}$ level of education, and $\beta_{4}income_{i}$ income.
+
+\noindent\\\textbf{Part (c).}
+\\We could simulate the date generating process and this model would satisfy a complete data generating process. The data required can be probably found in census; otherwise I can conduct some surveys online to get the data. 
+
+\noindent\\\textbf{Part (d).}
+\\Here, I include four key factors. While there must be other factors, the ones listed above are considered to be the most important ones: whether one has a partner, the age of the person, the level of education, and income. First, in most cultures today, marriage presumes that one is in a relationship; thus, having a partner as a factor is included. Second, age is another major factor, as people before and in their 20s are less likely to get married than those who are in their 30s or 40s. Third, level of education is also a major factor; the more educated a person is, to certain extent, the older he/she is going to be married. Last, income also affects the decision of marriage, for raising kids and perhaps paying for mortgage require enough income.  
+
+\noindent\\\textbf{Part (e).} 
+\\Being in a relationship, age, education, and income are the most important and relevant factors. Other factors, say, religion and race, could play a role, but they would not be as decisive as the ones listed above; therefore, they are omitted. 
+
+\noindent\\\textbf{Part (f).}
+\\To test this model in real life we could either cite data in a census or conduct surveys online. We could ask about if they are in a relationship, age, education, and income, along with other questions as distracting questions. Then we could run a regression to observe if these factors are significant.  
+\end{document}
+
