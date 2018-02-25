@@ -1,0 +1,88 @@
+\documentclass[11pt, oneside]{article}   
+\usepackage[utf8]{inputenc}     
+\usepackage[letterpaper, margin=0.8in]{geometry}           	
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{cases}
+\usepackage{bm}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}	
+% !TEX spellcheck = en_US
+%SetFonts
+
+%SetFonts
+
+
+\title{Problem Set 1}
+\author{Li Ruixue}
+%\date{}	
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\item \textbf{Classify a model from a journal}
+
+\begin{enumerate} [label=(\alph*)]
+\item \textbf{Find a theoretical or statistical model}
+\item \textbf{Give a detailed citation}  
+
+Chen, Keith. 2013. \href{http://www.jstor.org/stable/23469680?seq=1#page_scan_tab_contents}{"The Effect of Language on Economic Behavior: Evident from Savings Rates, Health Behaviors, and Retirement Assets."}  \textit{American Economic Review} 103(2): 690-731. 
+\item \textbf{Write the equation}
+
+$$ Pr(save_{it}) = \frac{exp(z_{it})}{1+exp(z_{it})} $$
+$$z_{it} = \beta _0 + \beta _1 StrongFTR + \beta _2 X_{it} + \beta _3 X_t + \beta _4 F^{ex}_{it} + \beta _5 F^c_t $$   \\
+Fixed-effect logic model of an individual's propensity to save (versus not save) in the current year regressed on the FTR (future-time reference) strength of that individual's language (the theory is that if a language has stronger FTR, which means that speakers must use specific forms of the language when talking about the future such as future tense in English, they will feel that the future is further away and less important, and therefore less likely to save) and a set of fixed-effects for country and individual characteristics.
+\item \textbf{List exogenous and endogenous variables}  \\
+\textbf{endogenous} :\\ $Pr(save_{it})$ : probability of an individual $i$ reporting having net saved in year $t$    \\
+\textbf{exogenous} :\\$X_{it}$ : characteristics of individual $i$ at time $t$ (country of residence, income decile within that country, marital status, sex, education, age, number of children, survey wave, religion, all interacted) \\  
+$X_{t}$ : characteristics of a country at time $t$  \\
+$F^{ex}_{it}$ : a set of fixed effects that can be taken as exogenous, such as age and sex of individual $i$ at time $t$  \\
+$F^c_t$ : a set of continent fixed effects at time $t$  \\  
+\item \textbf{Classify the model}\\
+(Generalized) linear model, static, deterministic.
+\item \textbf{a variable or feature that the model is missing that might be valuable}\\
+This model only looks at current characteristics and saving behaviors, but past saving behaviors may also be important. 
+
+\end{enumerate}
+\pagebreak
+\item \textbf{Make your own model}
+\begin{enumerate} [label=(\alph*)]
+\item \textbf{Write down a model of whether someone decides to get married}\\
+I'd like to use a logistic regression model: \\
+$$ Pr(getmarried_{it}) = \frac{exp(z_{it})}{1+exp(z_{it})} $$
+
+\begin{align*} z_{it} = & \beta _0 + age_{it} \times \beta _1 + sex_{it} \times \beta _2 + education_{it} \times \beta _3 + religion_{it} \times \beta _4 + \\ & income_{it} \times \beta _5 + family_{it} \times \beta _6 + dating_{it} \times \beta _7 + orientation_{it} \times \beta _8 \\
+&+ political_{it} \times \beta _9   + language_{i} \times \beta _10   \end{align*}
+
+%Pr(getmarried_{it}) probability of individual $i$ getting married in year $t$ \\\textbf{exogenous} :\\ $age$: age of individual $i$ in year $t$\\
+\textbf{endogenous:}\\
+$Pr(getmarried_{it})$: probability of individual $i$ getting married in year $t$\\
+\textbf{exogenous:}\\
+$age, education, income, family$: age, year of schooling, income, family environment (lower number for unhappy family and higher score for happy family) of individual $i$ in year $t$, \textit{numerical}.\\
+$sex, religion, dating, orientation, political, language$: sex, religion, dating status, sexual orientation, political leaning, and language spoken of individual $i$ in year $t$, \textit{categorical, coded into dummy variables.}\\
+\item \boldsymbol{ {$1 = get married$ or $0 = not get married$}}\\
+$$
+  y_{it}=\begin{cases}
+    1, & \text{if $Pr(getmarried_{it}) < 0.5$}.\\
+    0, & \text{otherwise}.
+  \end{cases}
+$$
+\item \textbf{Complete data generating process?}\\
+Yes. 
+\item \textbf{Key factors that influence this outcome}\\
+I expect all the exogenous variables to have influence on the individual's decision on getting married, especially age and education level. 
+\item \textbf{Why choose those factors and not others}\\
+I chose these factors based on my intuition and life experience, as well as on some literature I've been exposed in previous studies. For example, some studies have shown that more highly educated individuals tend to get married later, and I think factors such as language and religion can be used as proxies for culture, which will likely affect when people get married.
+\item \textbf{How to do a preliminary test}\\
+Since the test is preliminary, I think I'll acquire some data by conducting a small to medium-size survey or extracting relevant information from past surveys, such as national censuses, or general social survey. In a survey, I'll gather information on the variables I specified in the model, as well as whether the individual decides to get married in that year, whereas if I'm getting the information from past surveys, I'll look at individuals' demographic data as needed in the model as well as whether they're married or the year they got married. I can then run the logit regression and see whether some of the variables are significant. I can also divide my dataset into training and test subsets, estimate the coefficients with the training dataset, and predict the outcome for the test dataset to check the accuracy of the prediction. 
+
+\end{enumerate}
+\end{enumerate}
+
+\end{document}  
