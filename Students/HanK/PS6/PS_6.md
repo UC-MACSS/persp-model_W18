@@ -46,7 +46,7 @@ title(main = "The first tree with default control")
 
 ![](PS_6_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
 
-In the default setting in R, only the features "dem" and "rep" have effects in the model. The predicted democrats' feeling thermometer is 74.31, republicans' are 41.35 and those who are neither dem nor rep have the feeling thermometer of 58.5.
+In the default setting in R, only the features "dem" and "rep" (party affiliation) have effects in the model. The predicted democrats' feeling thermometer is 74.31, republicans' are 41.35 and those who are neither dem nor rep have the feeling thermometer of 58.5.
 
 ``` r
 # Calculate the MSE
@@ -60,7 +60,7 @@ cat("The test mse of the first tree is ", mse1)
 Part b). The second tree and pruning
 ------------------------------------
 
-**In this part, I first fit a tree with out pruning and plot it. And then I choose an optimal pruned tree and plot it.**
+**In this part, I first fit a tree without pruning and plot it. And then I choose an optimal pruned tree and plot it.**
 
 ``` r
 # tree with control
@@ -72,7 +72,7 @@ mse2 <- mse(biden_result2, biden_split$test)
 
 
 plot(biden_result2)
-text(biden_result2, cex = 0.3) 
+text(biden_result2, cex = 0.7) 
 title(main = "The second tree before pruning")
 ```
 
@@ -107,7 +107,7 @@ title(main = "The optimal pruned tree")
 
 ![](PS_6_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
 
-The optimal pruning method produces a medium tree, all features (dem, rep, age, educ and female) make effects in the model. Dem, rep and age have the highest importance. Besides, those who are neither rep nor dem would not heavily influenced by their demographic features, but both dem and rep would be influenced by some or all demographic features. The largest predicted feeling thermometer is 77.88 from democrats older than 53.5 and the smallest feeling thermometer is 33.18 from poor-educated female republicans older than 43.5.
+The optimal pruning method produces a medium tree, all features (dem, rep, age, educ and female) make effects in the model. Dem, rep (party affiliation) and age have the highest importance. Besides, those who are neither rep nor dem would not heavily influenced by their demographic features, but both dem and rep would be influenced by some or all demographic features. The largest predicted feeling thermometer is 77.88 from democrats older than 53.5 and the smallest feeling thermometer is 33.18 from poor-educated female republicans older than 43.5.
 
 ``` r
 kable(cbind(mse2, opt_mse),
@@ -144,7 +144,7 @@ ggplot(bag_importance, aes(features, IncNodePurity)) +
   geom_text(aes(label = IncNodePurity, y = (IncNodePurity / 2))) +
   labs(title = "Feature importance",
        x = "Features",
-       y = "Node Purity")
+       y = "Mean Increased Node Purity")
 ```
 
 ![](PS_6_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-11-1.png)
@@ -206,7 +206,7 @@ ggplot(importances, aes(features, IncNodePurity)) +
   facet_wrap(~ m) +
   labs(title = "Feature importance",
        x = "Features",
-       y = "Node Purity")
+       y = "Mean Increased Node Purity")
 ```
 
 ![](PS_6_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-15-1.png)
