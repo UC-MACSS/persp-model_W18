@@ -90,14 +90,12 @@ data.frame(num_nodes = 2:30, mses = mses) %>%
   ggplot(aes(x = num_nodes, y = mses)) +
   geom_line() + 
   scale_x_continuous(breaks =  c(5, 10, 15, 20, 25, 30)) +
-  labs(title = "MSES with different number of nodes when we prune the tree",
+  labs(title = "MSEs with different number of nodes when we prune the tree",
        x = "Number of Nodes",
        y = "Test MSE")
 ```
 
 ![](PS_6_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
-
-This graph shows that both too much and too less nodes will cause high test mse.
 
 ``` r
 plot(opt_tree)
@@ -107,7 +105,7 @@ title(main = "The optimal pruned tree")
 
 ![](PS_6_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
 
-The optimal pruning method produces a medium tree, all features (dem, rep, age, educ and female) make effects in the model. Dem, rep (party affiliation) and age have the highest importance. Besides, those who are neither rep nor dem would not heavily influenced by their demographic features, but both dem and rep would be influenced by some or all demographic features. The largest predicted feeling thermometer is 77.88 from democrats older than 53.5 and the smallest feeling thermometer is 33.18 from poor-educated female republicans older than 43.5.
+This graph shows that both too much and too less nodes will cause high test mse. 7 nodes are the optimal level of tree complexity. The optimal pruning method produces a medium tree, all features (dem, rep, age, educ and female) make effects in the model. Dem, rep (party affiliation) and age have the highest importance. Besides, those who are neither rep nor dem would not heavily influenced by their demographic features, but both dem and rep would be influenced by some or all demographic features. The largest predicted feeling thermometer is 77.88 from democrats older than 53.5 and the smallest feeling thermometer is 33.18 from poor-educated female republicans older than 43.5.
 
 ``` r
 kable(cbind(mse2, opt_mse),
@@ -213,4 +211,4 @@ ggplot(importances, aes(features, IncNodePurity)) +
 
 The first two mses are very similar (the former is slightly better than the latter) and the final one is obviously larger than them. This is because we only have 5 features so that the optimal parameter for random forest should be less than 2. If we choose too many features, such as m = 3, some features, which might cause overfitting problem, are still frequently selected and serve as the important features. In other words, other good features' importances are suppressed.
 
-The graph of feature importance provide the evidence of this reasoning. When m = 1 or 2, dem and rep are very important, and age, educ and female are unimportant. However, when m = 3, the results of importance are very similar to those in the bagging model: the importance of age is much larger than dem and rep, and educ is also moderately important. These results demonstrate age (and sometimes probabily educ) is not a good predictor but has enough importance in a single tree. In this case, when we set a small m, a large percent of trees in random forest will not be based on important but bad features and thus has a better prediction.
+The graph of feature importance provides the evidence of this reasoning. When m = 1 or 2, dem and rep are very important, and age, educ and female are unimportant. However, when m = 3, the results of importance are very similar to those in the bagging model: the importance of age is much larger than dem and rep, and educ is also moderately important. These results demonstrate age (and sometimes probabily educ) is not a good predictor but has enough importance in a single tree. In this case, when we set a small m, a large percent of trees in random forest will not be based on important but bad features and thus has a better prediction.
