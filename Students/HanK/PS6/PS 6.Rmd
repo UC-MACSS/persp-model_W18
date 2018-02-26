@@ -134,7 +134,7 @@ bag_importance <- as.data.frame(importance(bag_tree)) %>%
 
 ggplot(bag_importance, aes(features, IncNodePurity)) +
   geom_col(fill = 'sky blue', color = "black") +
-  geom_text(aes(label = IncNodePurity, y = (IncNodePurity / 2))) %>%
+  geom_text(aes(label = IncNodePurity, y = (IncNodePurity / 2))) +
   labs(title = "Feature importance",
        x = "Features",
        y = "Node Purity")
