@@ -7,7 +7,7 @@ library(tidyverse)
 library(modelr)
 library(tree)
 library(randomForest)
-
+library(knitr)
 set.seed(2)
 ```
 
@@ -33,8 +33,6 @@ Part a)
 
 ``` r
 # train the first tree
-
-
 biden_result1 <- tree(formula(features), data = biden_split$train,
                       method = "recursive.partition")
 ```
@@ -53,16 +51,11 @@ In the default setting in R, only the features "dem" and "rep" have effects in t
 ``` r
 # Calculate the MSE
 mse1 = mse(biden_result1,biden_split$test)
-print("The test mse of the first tree:")
+
+cat("The test mse of the first tree is ", mse1)
 ```
 
-    ## [1] "The test mse of the first tree:"
-
-``` r
-print(mse1)
-```
-
-    ## [1] 390.1726
+    ## The test mse of the first tree is  390.1726
 
 Part b). The second tree and pruning
 ------------------------------------
@@ -117,28 +110,13 @@ title(main = "The optimal pruned tree")
 The optimal pruning method produces a medium tree, all features (dem, rep, age, educ and female) make effects in the model. Dem, rep and age have the highest importance. Besides, those who are neither rep nor dem would not heavily influenced by their demographic features, but both dem and rep would be influenced by some or all demographic features. The largest predicted feeling thermometer is 77.88 from democrats older than 53.5 and the smallest feeling thermometer is 33.18 from poor-educated female republicans older than 43.5.
 
 ``` r
-print("The test mse of the second tree with out pruning:")
+kable(cbind(mse2, opt_mse),
+      col.names = c("before pruning mse", "pruned mse"))
 ```
 
-    ## [1] "The test mse of the second tree with out pruning:"
-
-``` r
-print(mse2)
-```
-
-    ## [1] 483.2683
-
-``` r
-print("The test mse of optimal pruned tree:")
-```
-
-    ## [1] "The test mse of optimal pruned tree:"
-
-``` r
-print(opt_mse)
-```
-
-    ## [1] 385.1833
+|  before pruning mse|  pruned mse|
+|-------------------:|-----------:|
+|            483.2683|    385.1833|
 
 There is no doubt that the test mse of pruned tree is much smaller than that of the original tree.
 
@@ -152,16 +130,7 @@ bag_tree <- randomForest(formula(features), data = biden_split$train,
                          mtry = 5, ntree = 500, importance=TRUE)
 
 mse_bag <-  mse(bag_tree, biden_split$test)
-print("The test mse of bagging tree:")
 ```
-
-    ## [1] "The test mse of bagging tree:"
-
-``` r
-print(mse_bag)
-```
-
-    ## [1] 467.2344
 
 ``` r
 # bagging importance
@@ -179,6 +148,12 @@ ggplot(bag_importance, aes(features, IncNodePurity)) +
 ```
 
 ![](PS_6_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-11-1.png)
+
+``` r
+cat("The bagging test mse is", mse_bag)
+```
+
+    ## The bagging test mse is 467.2344
 
 Age is the most important feature in bagging model and female is the least important. dem, educ and rep have moderate importance. However, the test mse of this model is not good, much worse than the pruned tree and very similar to the second tree before pruning.
 
@@ -198,16 +173,15 @@ mse_rf1 = mse(biden_rf1, biden_split$test)
 mse_rf2 = mse(biden_rf2, biden_split$test)
 mse_rf3 = mse(biden_rf3, biden_split$test)
 
-print("the test mse with 1, 2 and 3 features are respectively:")
+kable(cbind(mse_rf1, mse_rf2, mse_rf3),
+      col.names = c("m = 1", "m = 2", "m = 3"))
 ```
 
-    ## [1] "the test mse with 1, 2 and 3 features are respectively:"
+|     m = 1|     m = 2|     m = 3|
+|---------:|---------:|---------:|
+|  388.2278|  394.2489|  426.1068|
 
-``` r
-print(c(mse_rf1, mse_rf2, mse_rf3))
-```
-
-    ## [1] 388.2278 394.2489 426.1068
+The table shows the test mses of three random forest models.
 
 ``` r
 importance1 <-  as.data.frame(importance(biden_rf1)) %>%
@@ -235,6 +209,8 @@ ggplot(importances, aes(features, IncNodePurity)) +
        y = "Node Purity")
 ```
 
-![](PS_6_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-14-1.png) The first two mses are very similar (the former is slightly better than the latter) and the final one is obviously larger than them. This is because we only have 5 features so that the optimal parameter for random forest should be less than 2. If we choose too many features, such as m = 3, some features, which might cause overfitting problem, are still frequently selected and serve as the important features. In other words, other good features' importances are suppressed.
+![](PS_6_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-15-1.png)
+
+The first two mses are very similar (the former is slightly better than the latter) and the final one is obviously larger than them. This is because we only have 5 features so that the optimal parameter for random forest should be less than 2. If we choose too many features, such as m = 3, some features, which might cause overfitting problem, are still frequently selected and serve as the important features. In other words, other good features' importances are suppressed.
 
 The graph of feature importance provide the evidence of this reasoning. When m = 1 or 2, dem and rep are very important, and age, educ and female are unimportant. However, when m = 3, the results of importance are very similar to those in the bagging model: the importance of age is much larger than dem and rep, and educ is also moderately important. These results demonstrate age (and sometimes probabily educ) is not a good predictor but has enough importance in a single tree. In this case, when we set a small m, a large percent of trees in random forest will not be based on important but bad features and thus has a better prediction.
