@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="dem <= 0.5\nmse = 556.262\nsamples = 1264\nvalue = 62.165", fillcolor="#e5813991"] ;
+1 [label="rep <= 0.5\nmse = 507.397\nsamples = 724\nvalue = 52.811", fillcolor="#e5813958"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="female <= 0.5\nmse = 444.551\nsamples = 468\nvalue = 58.868", fillcolor="#e581397d"] ;
+1 -> 2 ;
+3 [label="mse = 470.335\nsamples = 235\nvalue = 56.489", fillcolor="#e581396e"] ;
+2 -> 3 ;
+4 [label="mse = 407.088\nsamples = 233\nvalue = 61.266", fillcolor="#e581398b"] ;
+2 -> 4 ;
+5 [label="female <= 0.5\nmse = 432.623\nsamples = 256\nvalue = 41.738", fillcolor="#e5813915"] ;
+1 -> 5 ;
+6 [label="mse = 456.775\nsamples = 123\nvalue = 38.333", fillcolor="#e5813900"] ;
+5 -> 6 ;
+7 [label="mse = 389.649\nsamples = 133\nvalue = 44.887", fillcolor="#e5813928"] ;
+5 -> 7 ;
+8 [label="age <= 54.5\nmse = 347.197\nsamples = 540\nvalue = 74.706", fillcolor="#e58139dd"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="educ <= 15.5\nmse = 345.027\nsamples = 340\nvalue = 72.606", fillcolor="#e58139d0"] ;
+8 -> 9 ;
+10 [label="mse = 369.301\nsamples = 247\nvalue = 71.105", fillcolor="#e58139c7"] ;
+9 -> 10 ;
+11 [label="mse = 258.693\nsamples = 93\nvalue = 76.591", fillcolor="#e58139e9"] ;
+9 -> 11 ;
+12 [label="female <= 0.5\nmse = 330.649\nsamples = 200\nvalue = 78.275", fillcolor="#e58139f3"] ;
+8 -> 12 ;
+13 [label="mse = 399.015\nsamples = 79\nvalue = 75.19", fillcolor="#e58139e0"] ;
+12 -> 13 ;
+14 [label="mse = 275.743\nsamples = 121\nvalue = 80.289", fillcolor="#e58139ff"] ;
+12 -> 14 ;
+}
