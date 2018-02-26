@@ -1,0 +1,105 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+library(caret)
+library(Hmisc)
+library(rpart)
+library(modelr)
+library(tree)
+library(randomForest)
+library(stringr)
+library(ggdendro)
+library(tidyverse)
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+Part a):
+```{r}
+biden<-read_csv("biden.csv")
+set.seed(999)
+split<-resample_partition(biden, c(test=0.3, train=0.7))
+
+bidentree<-tree(biden~., data=split$train)
+treedata<-dendro_data(bidentree)
+ptree<-ggplot(segment(treedata))+
+  geom_segment(aes(x=x, y=y, xend=xend, yend=yend), alpha=0.5)+
+  geom_text(data=label(treedata), aes(x=x, y=y, label=label))+
+  geom_text(data=leaf_label(treedata),
+            aes(x=x, y=y, label=label))+theme_dendro()+labs(title="Decision Tree for Attitudes Towards Biden")
+
+mse = function(model, data){
+  x = modelr:::residuals(model, data)
+  mean(x^2, na.rm=TRUE)
+}
+mse_val<-mse(model=bidentree, data=split$test)
+print(paste(c("The MSE value is",mse_val)))
+print(ptree)
+```
+
+Part b):
+```{r}
+set.seed(5)
+bidentreetwo<-tree(biden~., data=split$train, control=tree.control(nobs=nrow(split$train), mindev=0))
+summary(bidentreetwo)$size
+mse_valtwo<-mse(model=bidentreetwo, data=split$test)
+
+nodes<-2:25
+tree_pruned<-map(nodes, prune.tree, tree=bidentreetwo, k=NULL)
+msetest<-map_dbl(tree_pruned,mse, data=split$test)
+optim<-tree_pruned[[which.min(msetest)]]
+summary(optim)$size
+mse_valthree<-mse(model=optim, data=split$test)
+print(mse_valthree)
+
+
+tibble(node=nodes, msetest) %>%
+  ggplot(aes(x=nodes, y=msetest))+
+  geom_line()+
+  labs(title="Terminal Nodes and Test MSE")
+
+dendropruned<-dendro_data(tree_pruned[[which.min(msetest)]], type='uniform')
+print(dendropruned)
+```
+
+Part c)
+```{r}
+biden$party[biden$dem==1]="Democrat"
+biden$party[biden$dem==0 & biden$rep==0]="Unaffiliated"
+biden$party[biden$rep==1]="Republican"
+
+set.seed(299)
+bidensplit<-resample_partition(biden, c(test=0.3, train=0.7))
+biden_train<-data.frame(bidensplit$train)
+biden_test<-data.frame(bidensplit$test)
+
+biden_train_bag<-na.omit(biden_train)
+#biden_train_bag$female<-as.factor(biden_train_bag$female)
+#biden_train_bag$biden<-as.factor(biden_train_bag$biden)
+#biden_train_bag$educ<-as.factor(biden_train_bag$educ)
+biden_train_bag$dem<-as.factor(biden_train_bag$dem)
+biden_train_bag$rep<-as.factor(biden_train_bag$rep)
+biden_train_bag$party<-NULL
+
+biden_test_bag<-na.omit(biden_test)
+#biden_test_bag$female<-as.factor(biden_test_bag$female)
+#biden_test_bag$biden<-as.factor(biden_test_bag$biden)
+#biden_test_bag$educ<-as.factor(biden_test_bag$educ)
+biden_test_bag$dem<-as.factor(biden_test_bag$dem)
+biden_test_bag$rep<-as.factor(biden_test_bag$rep)
+biden_test_bag$party<-NULL
+
+bag_biden <- randomForest(biden ~ ., data = biden_train_bag, mtry = 5, ntree = 500, importance=TRUE)
+mse_bag_biden = mse(bag_biden, biden_test_bag)
+
+```
+
+
