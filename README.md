@@ -55,11 +55,11 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | **Feb. 5** | **M** | **Evans Midterm** |  | [PS4](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS4/PS4.pdf) |
 | Feb.  7 | W | Generalized linear models | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/GLMs/GLMest.ipynb) |  |
 | Feb. 12 | M | Resampling methods (cross-validation and bootstrapping) | JWHT Ch. 5, [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/Resampling/Resampling.ipynb) |  |
-| Feb. 14 | W | Nonlinear modeling | JWHT Ch. 7 |     |
-| Feb. 19 | M | Tree-based methods | JWHT Ch. 8 | [PS5](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS5/PS5.pdf) |
+| Feb. 14 | W | Nonlinear modeling | JWHT Ch. 7, [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/Nonlin/Nonlin.ipynb) |     |
+| Feb. 19 | M | Tree-based methods | JWHT Ch. 8, [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/Trees/Trees.ipynb) | [PS5](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS5/PS5.pdf) |
 | Feb. 21 | W | Tree-based methods | JWHT Ch. 8 |  |
-| Feb. 26 | M | Support vector machines | JWHT Ch. 9 | PS6 |
-| Feb. 28 | W | Support vector machines | JWHT Ch 9 |  |
+| Feb. 26 | M | Support vector machines | JWHT Ch. 9 | [PS6](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS6/PS6.pdf) |
+| Feb. 28 | W | Support vector machines | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/SVM/SVM.ipynb) |  |
 | Mar.  5 | M | Neural networks | Notes | PS7 |
 | Mar.  7 | W | Neural networks | Notes |     |
 | Mar. 12 | M |                 |       | PS8 |
