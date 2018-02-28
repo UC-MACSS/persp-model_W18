@@ -110,7 +110,7 @@ kable(cbind(mse2, opt_mse),
 ```
 
 
-There is no doubt that the test mse of pruned tree is much smaller than that of the original tree.
+There is no doubt that the test mse of pruned tree is much smaller than that of the original large tree.
 
 
 ## part c). Bagging
@@ -118,10 +118,13 @@ There is no doubt that the test mse of pruned tree is much smaller than that of 
 # Bagging is simply a special case of a random forest with m = p. 
 # So we can use random forest function.
 bag_tree <- randomForest(formula(features), data = biden_split$train, 
-                         mtry = 5, ntree = 500, importance=TRUE)
+                         mtry = 5, maxnodes = 7, ntree = 500,
+                         importance=TRUE)
 
 mse_bag <-  mse(bag_tree, biden_split$test)
 ```
+
+Based on the results from the pruned tree, I set the maxnodes as 7.
 
 ```{r, fig.width = 5, fig.height = 3}
 # bagging importance
@@ -141,10 +144,11 @@ ggplot(bag_importance, aes(features, IncNodePurity)) +
 cat("The bagging test mse is", mse_bag)
 ```
 
-
-Age is the most important feature in bagging model and female is the least important. dem, educ and rep have moderate importance. However, the test mse of this model is not good, much worse than the pruned tree and very similar to the second tree before pruning. 
+Dem and rep (especially dem) are still the most important features in the bagging model when we set an approriate node number, and female is the least important. Other features' effects are not strong. Besides, The bagging model produces a relatively small mse.
 
 ## Part d). Random forest
+
+### The first case
 ```{r}
 #train tree
 biden_rf1 <- randomForest(biden ~ ., data = biden_split$train, mtry =1,ntree = 500)
@@ -186,12 +190,61 @@ ggplot(importances, aes(features, IncNodePurity)) +
             size = 2) +
   facet_wrap(~ m) +
   labs(title = "Feature importance",
+       subtitle = "with default node setting",
        x = "Features",
        y = "Mean Increased Node Purity")
 ```
 
 The first two mses are very similar (the former is slightly better than the latter) and the final one is obviously larger than them. This is because we only have 5 features so that the optimal parameter for random forest should be less than 2. If we choose too many features, such as m = 3, some features, which might cause overfitting problem, are still frequently selected and serve as the important features. In other words, other good features' importances are suppressed.
 
-The graph of feature importance provides the evidence of this reasoning. When m = 1 or 2, dem and rep are very important, and age, educ and female are unimportant. However, when m = 3, the results of importance are very similar to those in the bagging model: the importance of age is much larger than dem and rep, and educ is also moderately important. These results demonstrate age (and sometimes probabily educ) is not a good predictor but has enough importance in a single tree. In this case, when we set a small m, a large percent of trees in random forest will not be based on important but bad features and thus has a better prediction.
+The graph of feature importance provides the evidence of this reasoning. When m = 1 or 2, dem and rep are very important, and educ and female are unimportant. However, when m = 3, the importance of age is much larger than dem and rep, and educ is also moderately important. These results demonstrate age (and sometimes probabily educ) is not a good predictor but has enough importance in a single tree. In this case, when we set a small m, a large percent of trees in random forest will not be based on important but bad features and thus has a better prediction.
+
+### Another case       
+
+However, this is not always the case. When I try different max and min node size(5 and 9), the effects of m will be different.
+```{r}
+biden_rf4 <- randomForest(biden ~ ., data = biden_split$train, 
+                          mtry =1, ntree = 500, nodesize = 5, maxnodes = 9)
+biden_rf5 <- randomForest(biden ~ ., data = biden_split$train, mtry =2,
+                          ntree = 500, nodesize = 5, maxnodes = 9)
+biden_rf6 <- randomForest(biden ~ ., data = biden_split$train, mtry =3,
+                          ntree = 500, nodesize = 5, maxnodes = 9)
+
+mse_rf4 = mse(biden_rf4, biden_split$test)
+mse_rf5 = mse(biden_rf5, biden_split$test)
+mse_rf6 = mse(biden_rf6, biden_split$test)
+
+kable(cbind(mse_rf4, mse_rf5, mse_rf6),
+      col.names = c("m = 1", "m = 2", "m = 3"))
+```
+
+```{r, fig.height = 3, fig.width = 8}
+importance4 <-  as.data.frame(importance(biden_rf4)) %>%
+  add_rownames("features")
+
+importance5 <-  as.data.frame(importance(biden_rf5)) %>%
+  add_rownames("features")
+
+importance6 <-  as.data.frame(importance(biden_rf6)) %>%
+  add_rownames("features")
 
 
+importances <- bind_rows("m = 1" = importance4, 
+                         "m = 2" = importance5, 
+                         "m = 3" = importance6, .id = "m") %>%
+  mutate(IncNodePurity = round(IncNodePurity, 2))
+
+ggplot(importances, aes(features, IncNodePurity)) +
+  geom_col(fill = 'sky blue', color = "black") +
+  geom_text(aes(label = IncNodePurity, y = (IncNodePurity / 2)),
+            size = 2) +
+  facet_wrap(~ m) +
+  labs(title = "Feature importance",
+       subtitle = "min and max node are 5 and 9", 
+       x = "Features",
+       y = "Mean Increased Node Purity")
+```
+
+When we set an appropriate min and max nodes number, we get another story. All mses are small and in all situations dem and rep are the most important features.      
+
+To summarize, the value of m does matter because it can balance the importance of features. But its specific effect should be evaluated by comprehensively considering all the parameters we set. Specifically, when the nodes we set are neither optimal nor extremely bad, it can have a large effect on the results as in the first case. On the contrary, its effect will be reduced as in this case.
