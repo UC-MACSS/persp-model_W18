@@ -59,8 +59,8 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | Feb. 19 | M | Tree-based methods | JWHT Ch. 8, [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/Trees/Trees.ipynb) | [PS5](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS5/PS5.pdf) |
 | Feb. 21 | W | Tree-based methods | JWHT Ch. 8 |  |
 | Feb. 26 | M | Support vector machines | JWHT Ch. 9 | [PS6](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS6/PS6.pdf) |
-| Feb. 28 | W | Support vector machines | JWHT Ch 9 |  |
-| Mar.  5 | M | Neural networks | Notes | PS7 |
+| Feb. 28 | W | Support vector machines | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/SVM/SVM.ipynb) |  |
+| Mar.  5 | M | Neural networks | Notes | [PS7](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS7/PS7.pdf) |
 | Mar.  7 | W | Neural networks | Notes |     |
 | Mar. 12 | M |                 |       | PS8 |
 
