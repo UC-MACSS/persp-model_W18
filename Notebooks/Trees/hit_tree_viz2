@@ -22,7 +22,7 @@ edge [fontname=helvetica] ;
 8 -> 9 ;
 10 [label="mse = 65984.355\nsamples = 27\nvalue = 531.79", fillcolor="#e5813941"] ;
 9 -> 10 ;
-11 [label="mse = 66908.549\nsamples = 40\nvalue = 797.137", fillcolor="#e581396e"] ;
+11 [label="mse = 66908.549\nsamples = 40\nvalue = 797.136", fillcolor="#e581396e"] ;
 9 -> 11 ;
 12 [label="X[13] <= 838.5\nmse = 298089.087\nsamples = 19\nvalue = 1233.407", fillcolor="#e58139b8"] ;
 8 -> 12 ;
