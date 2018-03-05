@@ -61,7 +61,7 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | Feb. 26 | M | Support vector machines | JWHT Ch. 9 | [PS6](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS6/PS6.pdf) |
 | Feb. 28 | W | Support vector machines | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/SVM/SVM.ipynb) |  |
 | Mar.  5 | M | Neural networks | Notes | [PS7](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS7/PS7.pdf) |
-| Mar.  7 | W | Neural networks | Notes |     |
+| Mar.  7 | W | Neural networks | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/NeuralNet/NeuralNet.ipynb) |     |
 | Mar. 12 | M |                 |       | PS8 |
 
 ## References and Readings ##
