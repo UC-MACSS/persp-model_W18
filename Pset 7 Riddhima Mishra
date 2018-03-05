@@ -1,0 +1,301 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Problem Set 7\n",
+    "Submitted by: Riddhima Mishra"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "C:\\cygwin64\\home\\Riddhima Mishra\\persp-model_W18\\ProblemSets\\PS4\n"
+     ]
+    }
+   ],
+   "source": [
+    "cd C:\\cygwin64\\home\\Riddhima Mishra\\persp-model_W18\\ProblemSets\\PS4"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt \n",
+    "import numpy as np\n",
+    "import statsmodels.api as sm\n",
+    "import sklearn\n",
+    "from sklearn import preprocessing\n",
+    "from sklearn.linear_model import LogisticRegression\n",
+    "from sklearn.cross_validation import train_test_split\n",
+    "from sklearn import metrics \n",
+    "from sklearn.metrics import classification_report\n",
+    "from pylab import rcParams\n",
+    "from sklearn.metrics import mean_squared_error"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### 1. Logistic Regression"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "Int64Index: 392 entries, 0 to 396\n",
+      "Data columns (total 11 columns):\n",
+      "mpg             392 non-null float64\n",
+      "cylinders       392 non-null int64\n",
+      "displacement    392 non-null float64\n",
+      "horsepower      392 non-null float64\n",
+      "weight          392 non-null int64\n",
+      "acceleration    392 non-null float64\n",
+      "year            392 non-null int64\n",
+      "origin          392 non-null int64\n",
+      "name            392 non-null object\n",
+      "mpg_high        392 non-null int32\n",
+      "const           392 non-null int64\n",
+      "dtypes: float64(4), int32(1), int64(5), object(1)\n",
+      "memory usage: 35.2+ KB\n",
+      "k index= 0\n",
+      "MSE for test set 0  is 0.0918367346939\n",
+      "k index= 1\n",
+      "MSE for test set 1  is 0.102040816327\n",
+      "k index= 2\n",
+      "MSE for test set 2  is 0.132653061224\n",
+      "k index= 3\n",
+      "MSE for test set 3  is 0.102040816327\n",
+      "test estimate MSE k-fold= 0.107142857143 test estimate MSE standard err= 0.015306122449\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\ipykernel_launcher.py:15: DeprecationWarning: \n",
+      ".ix is deprecated. Please use\n",
+      ".loc for label based indexing or\n",
+      ".iloc for positional indexing\n",
+      "\n",
+      "See the documentation here:\n",
+      "http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecated\n",
+      "  from ipykernel import kernelapp as app\n"
+     ]
+    }
+   ],
+   "source": [
+    "auto_data = pd.read_csv('Auto.csv')\n",
+    "\n",
+    "auto_data = pd.read_csv('Auto.csv')\n",
+    "auto_data['horsepower'] = pd.to_numeric(auto_data['horsepower'], errors='coerce')\n",
+    "\n",
+    "#this introduces 5 Null values\n",
+    "auto_data.dropna(inplace=True)\n",
+    "#Creating a dummy variable for mpg\n",
+    "\n",
+    "auto_data['mpg_high'] = (auto_data['mpg'] >= auto_data['mpg'].median()).astype(int)\n",
+    "auto_data['const'] = 1\n",
+    "\n",
+    "auto_data.info()\n",
+    "\n",
+    "X = auto_data.ix[:, (1, 2, 3, 4, 5, 6, 7,10)].values\n",
+    "y = auto_data.ix[:, 9].values\n",
+    "\n",
+    "#Fitting the model\n",
+    "\n",
+    "from sklearn.model_selection import KFold\n",
+    "\n",
+    "kf_log = KFold(n_splits=4, random_state=15, shuffle=True)\n",
+    "\n",
+    "#splitting the data\n",
+    "\n",
+    "kf_log.get_n_splits(X)\n",
+    "\n",
+    "MSE_vec_kf = np.zeros(4)\n",
+    "\n",
+    "k_ind = int(0)\n",
+    "for train_index, test_index in kf_log.split(X):\n",
+    "    # print(\"TRAIN:\", train_index, \"TEST:\", test_index)\n",
+    "    print('k index=', k_ind)\n",
+    "    X_train, X_test = X[train_index], X[test_index]\n",
+    "    y_train, y_test = y[train_index], y[test_index]\n",
+    "    LogReg = LogisticRegression()\n",
+    "    LogReg.fit(X_train, y_train)\n",
+    "    y_pred = LogReg.predict(X_test)\n",
+    "    MSE_vec_kf[k_ind] = ((y_test - y_pred) ** 2).mean()\n",
+    "    print('MSE for test set', k_ind, ' is', MSE_vec_kf[k_ind])\n",
+    "    k_ind += 1\n",
+    "\n",
+    "MSE_kf = MSE_vec_kf.mean()\n",
+    "MSE_kf_std = MSE_vec_kf.std()\n",
+    "print('test estimate MSE k-fold=', MSE_kf,\n",
+    "      'test estimate MSE standard err=', MSE_kf_std)\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### b. Random Forest Classifer"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "MSE= 0.055858801225\n",
+      "error rates/accuracy score : 0.7765647951\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.ensemble import RandomForestRegressor\n",
+    "from sklearn.ensemble import RandomForestClassifier\n",
+    "\n",
+    "tree = RandomForestRegressor(n_estimators=20, max_features=2, bootstrap=True,\n",
+    "                                  oob_score=True, random_state=25)\n",
+    "tree.fit(X, y)\n",
+    "\n",
+    "tree.score(X, y)\n",
+    "y_pred = tree.oob_prediction_\n",
+    "MSE = mean_squared_error(y, y_pred)\n",
+    "#MSE = mean_squared_error(y, ['y_pred'] == 0)\n",
+    "\n",
+    "print('MSE=', MSE)\n",
+    "\n",
+    "#error rates for each category/\n",
+    "print(\"error rates/accuracy score :\", tree.oob_score_)\n",
+    "\n",
+    "#from sklearn.metrics import r2_score\n",
+    "#test_score = r2_score(y_test, y_pred)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### c. splitting the data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "k index= 0\n",
+      "MSE for test set 0  is 0.540816326531\n",
+      "k index= 1\n",
+      "MSE for test set 1  is 0.520408163265\n",
+      "k index= 2\n",
+      "MSE for test set 2  is 0.520408163265\n",
+      "k index= 3\n",
+      "MSE for test set 3  is 0.448979591837\n",
+      "test estimate MSE k-fold= 0.507653061224 test estimate MSE standard err= 0.0348846794163\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn import svm\n",
+    "from sklearn.datasets import make_blobs\n",
+    "\n",
+    "\n",
+    "kf_log = KFold(n_splits=4, random_state=15, shuffle=True)\n",
+    "\n",
+    "#splitting the data\n",
+    "\n",
+    "kf_log.get_n_splits(X)\n",
+    "\n",
+    "MSE_vec_kf = np.zeros(4)\n",
+    "\n",
+    "k_ind = int(0)\n",
+    "for train_index, test_index in kf_log.split(X):\n",
+    "    # print(\"TRAIN:\", train_index, \"TEST:\", test_index)\n",
+    "    print('k index=', k_ind)\n",
+    "    X_train, X_test = X[train_index], X[test_index]\n",
+    "    y_train, y_test = y[train_index], y[test_index]\n",
+    "    clf = svm.SVC(kernel='rbf', C=1, gamma=0.2)\n",
+    "    clf.fit(X_train, y_train)\n",
+    "    y_pred = clf.predict(X_test)\n",
+    "    MSE_vec_kf[k_ind] = ((y_test - y_pred) ** 2).mean()\n",
+    "    print('MSE for test set', k_ind, ' is', MSE_vec_kf[k_ind])\n",
+    "    k_ind += 1\n",
+    "\n",
+    "MSE_kf = MSE_vec_kf.mean()\n",
+    "MSE_kf_std = MSE_vec_kf.std()\n",
+    "print('test estimate MSE k-fold=', MSE_kf,\n",
+    "      'test estimate MSE standard err=', MSE_kf_std)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### d) \n",
+    "\n",
+    "Random Forest model is the best model of all the three models as the mean\n",
+    "standard error is the least (zero) in this case. \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
