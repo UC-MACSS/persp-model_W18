@@ -1,0 +1,166 @@
+---
+title: "Homework #4"
+author: Sumer Vaid
+output: pdf_document
+---
+
+First, lets load some packages: 
+
+```{r}
+library(ggplot2)
+library(lattice)
+library(caret)
+library(class)
+library(GGally)
+library(SDMTools)
+```
+
+Question 1a):
+I replace the "?" values with NA values. 
+```{r}
+auto<-read.csv("auto.csv", na.strings = "?")
+```
+
+Question 1b):
+```{r}
+scatterplot_matrix<-ggpairs(auto[,1:6])
+print(scatterplot_matrix)
+```
+
+Question 1c):
+```{r}
+auto$mpg<-as.numeric(auto$mpg)
+auto$cylinders<-as.numeric(auto$cylinders)
+auto$displacement<-as.numeric(auto$displacement)
+auto$horsepower<-as.numeric(auto$horsepower)
+cor_matrix<-cor(auto[,1:8], method="pearson", use="pairwise")
+print(cor_matrix)
+```
+
+Question 1d):
+```{r}
+fit <-lm(auto$mpg~auto$cylinders+auto$displacement+auto$horsepower+auto$weight+auto$acceleration+auto$year+auto$origin)
+print(summary(fit))
+```
+1d i) Weight, year, origin and displacement are statistically significant at the 1% signifiance level. 
+
+1d ii) Cylinders, horsepower, acceleration are not significant at the 10% significance level. 
+
+1d iii) A change in one unit of the year variable - 1 year - corresponds with a 0.75 change in miles per gallon, given that all other variables are controlled for. 
+Question 1e)
+According to the scatterplot matrix, it looks like acceleration, horsepower and displacement may have a non-linear relationship with mpg. 
+
+1e i)
+```{r}
+acc2<-auto$acceleration^2
+hors2<-auto$horsepower^2
+displacement2<-auto$displacement^2
+fit2<-lm(mpg~cylinders+displacement2+hors2+weight+acc2+year+origin+acceleration+horsepower+displacement, data=auto)
+print(summary(fit2))
+```
+1e ii) The adjusted R Square term is 0.8602. This is greater than the initial adjusted R Square term of 0.8182 obtained from the model without square terms. 
+
+1e iii) Both displacement and its squared term have coefficients that are statistically significant at a level of 1%. Furthermore, the coefficient value went from being positive to negative of the displacement coeffiecient. 
+
+Question 1 f)
+
+```{r}
+new_df<-0
+new_df$cylinders<-6
+new_df$displacement<-200
+new_df$horsepower<-100
+new_df$weight<-3100
+new_df$acceleration<-15.1
+new_df$year<-99
+new_df$origin<-1
+new_df$displacement2<-(new_df$displacement^2)
+new_df$hors2<-(new_df$horsepower^2)
+new_df$acc2<-(new_df$acceleration^2)
+print(predict.lm(fit2, new_df, response=TRUE)) 
+```
+The mpg of the specified vechile would be 38.49804 miles per gallon. 
+
+
+Question 2
+
+2 a) 
+```{r}
+knn<-data.frame(c(1,2,3,4,5,6))
+knn$X1<-c(0,2,0,0,-1,1)
+knn$X2<-c(3,0,1,1,0,1)
+knn$X3<-c(0,0,3,2,1,1)
+knn$Y<-c("Red", "Red", "Red", "Green", "Green", "Red")
+knn$dist<-sqrt(knn$X1^2+knn$X2^2+knn$X3^2)
+```
+
+2 b) Since the distance is shortest to observation 4 (distance=1.414), I predict that the response variable will be green. 
+
+2 c) I will pick those values that correspond to the three closest neighbors to the origin point. This distance is shortest for observation 2 (distance=2), observation 5 (distance=1.414) and observation 6 (distance=1.732). 
+
+2 d) A K increases, the patterns of results become more linear. As such, if the Bayes decision boundary is extremely non-linear, a k-value smaller in magnitude will be better. 
+
+2 e)
+
+```{r}
+pred<-c(1,1,1)
+labels<-knn$Y
+test_pred<-knn(knn[,2:4],pred,cl=labels,k=2)
+print(test_pred)
+```
+The KNN classifier is Green. 
+
+
+Question 3)
+```{r}
+auto$mpg_high<-0
+auto$mpg_high[auto$mpg<median(auto$mpg)]<-0
+auto$mpg_high[auto$mpg>median(auto$mpg)]<-1
+auto$constant<-1 #adds a constant term
+```
+
+Question 3a)
+```{r}
+fit3<-glm(mpg_high~cylinders+displacement+horsepower+weight+acceleration+year+origin, family=binomial(link='logit'), data=auto)
+summary(fit3)
+```
+Weight and year are both significant at a level of 10%. 
+
+Question 3b)
+```{r}
+#random_state=10 from Python in R:
+set.seed(10)
+#train_test_split in python in R:
+breakdata<-createDataPartition(auto$mpg, p=0.5, list=FALSE, times=1)  
+train<-auto[breakdata,] 
+test<-auto[-breakdata,]
+```
+
+Question 3c)
+```{r}
+fit4<-glm(mpg_high~cylinders+displacement+horsepower+weight+acceleration+year+origin,
+          family=binomial(link='logit'), data=train)
+
+summary(fit4)
+
+```
+The estimates are:
+B0=-22.63 (intercept)
+B1=-0.640609
+B2=0.009321
+B3=-0.014035
+B4=-0.004401
+B5=-0.001086
+B6=0.489362
+B7=0.338258
+
+
+Question 3d)
+```{r}
+predicted<-predict(fit4,test,type="response")
+actual<-train$mpg_high
+actual<-actual[-199]
+confm<-confusion.matrix(actual, predicted)
+print(confm)
+```
+
+As the confusion matrix indicates, the model is (roughly) equally good at classifyig both 0s and 1s. Therefore, it is equally good at classifying the presence or absence of a high mpg. 
