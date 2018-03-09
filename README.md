@@ -60,14 +60,16 @@ If you need any special accommodations, please provide us with a copy of your Ac
 | Feb. 21 | W | Tree-based methods | JWHT Ch. 8 |  |
 | Feb. 26 | M | Support vector machines | JWHT Ch. 9 | [PS6](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS6/PS6.pdf) |
 | Feb. 28 | W | Support vector machines | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/SVM/SVM.ipynb) |  |
-| Mar.  5 | M | Neural networks | Notes | [PS7](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS7/PS7.pdf) |
-| Mar.  7 | W | Neural networks | Notes |     |
-| Mar. 12 | M |                 |       | PS8 |
+| Mar.  5 | M | Neural networks | HTF Ch. 11, G Ch. 10 | [PS7](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS7/PS7.pdf) |
+| Mar.  7 | W | Neural networks | [Notes](https://github.com/UC-MACSS/persp-model_W18/blob/master/Notebooks/NeuralNet/NeuralNet.ipynb) |     |
+| Mar. 12 | M |                 |       | [PS8](https://github.com/UC-MACSS/persp-model_W18/blob/master/ProblemSets/PS8/PS8.pdf) |
 
 ## References and Readings ##
 
 All readings are required unless otherwise noted. Adjustments can be made throughout the quarter; be sure to check this repository frequently to make sure you know all the assigned readings.
 
+* Géron, Aurélien, *Hands-On Machine Learning with Scikit-Learn & TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems*, O'Reilly (2017).
+* Hastie, Trevor, Robert Tibshirani, and Jerome Friedman, [*The Elements of Statistical Learning: Data Mining, Inference, and Prediction*](https://web.stanford.edu/~hastie/Papers/ESLII.pdf), 2nd Edition, Springer (2009).
 * James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). [*An Introduction to Statistical Learning*](http://link.springer.com.proxy.uchicago.edu/book/10.1007%2F978-1-4614-7138-7). New York: Springer.
 * VanderPlas, Jake. (2016). [*Python Data Science Handbook*](http://proquestcombo.safaribooksonline.com.proxy.uchicago.edu/book/programming/python/9781491912126). O'Reilly Media, Inc.
 * Varian, Hal R., "[How to Build an Economic Model in Your Spare Time](http://people.ischool.berkeley.edu/~hal/Papers/how.pdf)," in *Passion and Craft: Economists at Work*, eds. Michael Szenberg, University of Michigan Press, 1997.
