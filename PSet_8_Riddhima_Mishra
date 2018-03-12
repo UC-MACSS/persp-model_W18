@@ -1,0 +1,980 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": true
+   },
+   "source": [
+    "## Problem Set # 8"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "C:\\cygwin64\\home\\Riddhima Mishra\\ps8-riddhima112\\persp-model_W18\\ProblemSets\\PS8\\data\n"
+     ]
+    }
+   ],
+   "source": [
+    "cd C:\\cygwin64\\home\\Riddhima Mishra\\ps8-riddhima112\\persp-model_W18\\ProblemSets\\PS8\\data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\statsmodels\\compat\\pandas.py:56: FutureWarning: The pandas.core.datetools module is deprecated and will be removed in a future version. Please use the pandas.tseries module instead.\n",
+      "  from pandas.core import datetools\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.\n",
+      "  \"This module will be removed in 0.20.\", DeprecationWarning)\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt \n",
+    "import numpy as np\n",
+    "import statsmodels.api as sm\n",
+    "import sklearn\n",
+    "from sklearn import preprocessing\n",
+    "from sklearn.linear_model import LogisticRegression\n",
+    "from sklearn.cross_validation import train_test_split\n",
+    "from sklearn import metrics \n",
+    "from sklearn.metrics import classification_report\n",
+    "from pylab import rcParams\n",
+    "from sklearn.metrics import mean_squared_error"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " Volume in drive C is OS\n",
+      " Volume Serial Number is D680-E80D\n",
+      "\n",
+      " Directory of C:\\cygwin64\\home\\Riddhima Mishra\\ps8-riddhima112\\persp-model_W18\\ProblemSets\\PS8\\data\n",
+      "\n",
+      "03/11/2018  10:38 PM    <DIR>          .\n",
+      "03/11/2018  10:38 PM    <DIR>          ..\n",
+      "03/11/2018  10:38 PM            11,366 strongdrink.txt\n",
+      "               1 File(s)         11,366 bytes\n",
+      "               2 Dir(s)  747,532,156,928 bytes free\n"
+     ]
+    }
+   ],
+   "source": [
+    "ls"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style>\n",
+       "    .dataframe thead tr:only-child th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>cultivar</th>\n",
+       "      <th>alco</th>\n",
+       "      <th>malic</th>\n",
+       "      <th>ash</th>\n",
+       "      <th>alk</th>\n",
+       "      <th>magn</th>\n",
+       "      <th>tot_phen</th>\n",
+       "      <th>flav</th>\n",
+       "      <th>nonfl_phen</th>\n",
+       "      <th>proanth</th>\n",
+       "      <th>color_int</th>\n",
+       "      <th>hue</th>\n",
+       "      <th>OD280rat</th>\n",
+       "      <th>proline</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>14.23</td>\n",
+       "      <td>1.71</td>\n",
+       "      <td>2.43</td>\n",
+       "      <td>15.6</td>\n",
+       "      <td>127</td>\n",
+       "      <td>2.80</td>\n",
+       "      <td>3.06</td>\n",
+       "      <td>0.28</td>\n",
+       "      <td>2.29</td>\n",
+       "      <td>5.64</td>\n",
+       "      <td>1.04</td>\n",
+       "      <td>3.92</td>\n",
+       "      <td>1065</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>13.20</td>\n",
+       "      <td>1.78</td>\n",
+       "      <td>2.14</td>\n",
+       "      <td>11.2</td>\n",
+       "      <td>100</td>\n",
+       "      <td>2.65</td>\n",
+       "      <td>2.76</td>\n",
+       "      <td>0.26</td>\n",
+       "      <td>1.28</td>\n",
+       "      <td>4.38</td>\n",
+       "      <td>1.05</td>\n",
+       "      <td>3.40</td>\n",
+       "      <td>1050</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>13.16</td>\n",
+       "      <td>2.36</td>\n",
+       "      <td>2.67</td>\n",
+       "      <td>18.6</td>\n",
+       "      <td>101</td>\n",
+       "      <td>2.80</td>\n",
+       "      <td>3.24</td>\n",
+       "      <td>0.30</td>\n",
+       "      <td>2.81</td>\n",
+       "      <td>5.68</td>\n",
+       "      <td>1.03</td>\n",
+       "      <td>3.17</td>\n",
+       "      <td>1185</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1</td>\n",
+       "      <td>14.37</td>\n",
+       "      <td>1.95</td>\n",
+       "      <td>2.50</td>\n",
+       "      <td>16.8</td>\n",
+       "      <td>113</td>\n",
+       "      <td>3.85</td>\n",
+       "      <td>3.49</td>\n",
+       "      <td>0.24</td>\n",
+       "      <td>2.18</td>\n",
+       "      <td>7.80</td>\n",
+       "      <td>0.86</td>\n",
+       "      <td>3.45</td>\n",
+       "      <td>1480</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>1</td>\n",
+       "      <td>13.24</td>\n",
+       "      <td>2.59</td>\n",
+       "      <td>2.87</td>\n",
+       "      <td>21.0</td>\n",
+       "      <td>118</td>\n",
+       "      <td>2.80</td>\n",
+       "      <td>2.69</td>\n",
+       "      <td>0.39</td>\n",
+       "      <td>1.82</td>\n",
+       "      <td>4.32</td>\n",
+       "      <td>1.04</td>\n",
+       "      <td>2.93</td>\n",
+       "      <td>735</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   cultivar   alco  malic   ash   alk  magn  tot_phen  flav  nonfl_phen  \\\n",
+       "0         1  14.23   1.71  2.43  15.6   127      2.80  3.06        0.28   \n",
+       "1         1  13.20   1.78  2.14  11.2   100      2.65  2.76        0.26   \n",
+       "2         1  13.16   2.36  2.67  18.6   101      2.80  3.24        0.30   \n",
+       "3         1  14.37   1.95  2.50  16.8   113      3.85  3.49        0.24   \n",
+       "4         1  13.24   2.59  2.87  21.0   118      2.80  2.69        0.39   \n",
+       "\n",
+       "   proanth  color_int   hue  OD280rat  proline  \n",
+       "0     2.29       5.64  1.04      3.92     1065  \n",
+       "1     1.28       4.38  1.05      3.40     1050  \n",
+       "2     2.81       5.68  1.03      3.17     1185  \n",
+       "3     2.18       7.80  0.86      3.45     1480  \n",
+       "4     1.82       4.32  1.04      2.93      735  "
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data = pd.read_csv('strongdrink.txt')\n",
+    "data.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 176 entries, 0 to 175\n",
+      "Data columns (total 14 columns):\n",
+      "cultivar      176 non-null int64\n",
+      "alco          176 non-null float64\n",
+      "malic         176 non-null float64\n",
+      "ash           176 non-null float64\n",
+      "alk           176 non-null float64\n",
+      "magn          176 non-null int64\n",
+      "tot_phen      176 non-null float64\n",
+      "flav          176 non-null float64\n",
+      "nonfl_phen    176 non-null float64\n",
+      "proanth       176 non-null float64\n",
+      "color_int     176 non-null float64\n",
+      "hue           176 non-null float64\n",
+      "OD280rat      176 non-null float64\n",
+      "proline       176 non-null int64\n",
+      "dtypes: float64(11), int64(3)\n",
+      "memory usage: 19.3 KB\n"
+     ]
+    }
+   ],
+   "source": [
+    "data.info()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## a) scatterplot "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<matplotlib.figure.Figure at 0x252c4922b38>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "import seaborn as sb\n",
+    "fg = sb.FacetGrid(data=data, hue='cultivar')\n",
+    "fg.map(plt.scatter, 'alco', 'color_int').add_legend()\n",
+    "plt.title(\"Relationship b/w alcohol and color intensity\")\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## b) Logistic Regression"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Xvars = data.ix[:, (1, 2, 6, 10)].values\n",
+    "yvals = data.ix[:, 0].values\n",
+    "\n",
+    "LogReg = LogisticRegression()\n",
+    "results = LogReg.fit(Xvars, yvals)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import KFold"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 219,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Value of C = 0.05\n",
+      "test estimate MSE k-fold= 0.164772727273 test estimate MSE standard err= 0.0517638271542\n",
+      "Value of C = 0.15000000000000002\n",
+      "test estimate MSE k-fold= 0.113636363636 test estimate MSE standard err= 0.0700501591246\n",
+      "Value of C = 0.25\n",
+      "test estimate MSE k-fold= 0.113636363636 test estimate MSE standard err= 0.0700501591246\n",
+      "Value of C = 0.35\n",
+      "test estimate MSE k-fold= 0.0681818181818 test estimate MSE standard err= 0.0278351107134\n",
+      "Value of C = 0.45\n",
+      "test estimate MSE k-fold= 0.0681818181818 test estimate MSE standard err= 0.0278351107134\n",
+      "Value of C = 0.55\n",
+      "test estimate MSE k-fold= 0.0738636363636 test estimate MSE standard err= 0.0247664712701\n",
+      "Value of C = 0.65\n",
+      "test estimate MSE k-fold= 0.0795454545455 test estimate MSE standard err= 0.0196823955406\n",
+      "Value of C = 0.75\n",
+      "test estimate MSE k-fold= 0.102272727273 test estimate MSE standard err= 0.0376889180722\n",
+      "Value of C = 0.8500000000000001\n",
+      "test estimate MSE k-fold= 0.102272727273 test estimate MSE standard err= 0.0376889180722\n",
+      "Value of C = 0.9500000000000001\n",
+      "test estimate MSE k-fold= 0.102272727273 test estimate MSE standard err= 0.0376889180722\n"
+     ]
+    }
+   ],
+   "source": [
+    "clf_mlog = KFold(n_splits=4, random_state=22, shuffle=True)\n",
+    "clf_mlog.get_n_splits(Xvars)\n",
+    "\n",
+    "MSE_vec_kf = np.zeros(4)\n",
+    "\n",
+    "for c in range(10):\n",
+    "    value_C = (c/10) + 0.05\n",
+    "    print(\"Value of C =\", value_C)\n",
+    "    k_ind = int(0)\n",
+    "    for train_index, test_index in clf_mlog.split(Xvars):\n",
+    "        # print(\"TRAIN:\", train_index, \"TEST:\", test_index)\n",
+    "        #print('k index=', k_ind)\n",
+    "        X_train, X_test = Xvars[train_index], Xvars[test_index]\n",
+    "        y_train, y_test = yvals[train_index], yvals[test_index]\n",
+    "        LogReg = LogisticRegression(multi_class='multinomial', penalty='l2',C= (c/10) + 0.05, solver='newton-cg')\n",
+    "        LogReg.fit(X_train, y_train)\n",
+    "        y_pred = LogReg.predict(X_test)\n",
+    "        MSE_vec_kf[k_ind] = ((y_test - y_pred) ** 2).mean()\n",
+    "        #print('MSE for test set', k_ind, ' is', MSE_vec_kf[k_ind])\n",
+    "        k_ind += 1\n",
+    "    MSE_kf = MSE_vec_kf.mean()\n",
+    "    MSE_kf_std = MSE_vec_kf.std()\n",
+    "    print('test estimate MSE k-fold=', MSE_kf,\n",
+    "      'test estimate MSE standard err=', MSE_kf_std)\n",
+    "#print(\"The tunning values used for penalty and C are l1 and 4 respectively\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### For the values C= 0.35 and 0.45, we have the lease MSE i.e. 0.0681818181818."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## c. Random Forest Classifier"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 286,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1\n",
+      "MSE = 0.414772727273\n",
+      "2\n",
+      "MSE = 0.289772727273\n",
+      "3\n",
+      "MSE = 0.204545454545\n",
+      "4\n",
+      "MSE = 0.170454545455\n",
+      "5\n",
+      "MSE = 0.147727272727\n",
+      "6\n",
+      "MSE = 0.130681818182\n",
+      "7\n",
+      "MSE = 0.130681818182\n",
+      "8\n",
+      "MSE = 0.113636363636\n",
+      "9\n",
+      "MSE = 0.107954545455\n",
+      "10\n",
+      "MSE = 0.102272727273\n",
+      "11\n",
+      "MSE = 0.0909090909091\n",
+      "12\n",
+      "MSE ="
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:453: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable oob estimates.\n",
+      "  warn(\"Some inputs do not have OOB scores. \"\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:458: RuntimeWarning: invalid value encountered in true_divide\n",
+      "  predictions[k].sum(axis=1)[:, np.newaxis])\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:453: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable oob estimates.\n",
+      "  warn(\"Some inputs do not have OOB scores. \"\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:458: RuntimeWarning: invalid value encountered in true_divide\n",
+      "  predictions[k].sum(axis=1)[:, np.newaxis])\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:453: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable oob estimates.\n",
+      "  warn(\"Some inputs do not have OOB scores. \"\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:458: RuntimeWarning: invalid value encountered in true_divide\n",
+      "  predictions[k].sum(axis=1)[:, np.newaxis])\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:453: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable oob estimates.\n",
+      "  warn(\"Some inputs do not have OOB scores. \"\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:458: RuntimeWarning: invalid value encountered in true_divide\n",
+      "  predictions[k].sum(axis=1)[:, np.newaxis])\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:453: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable oob estimates.\n",
+      "  warn(\"Some inputs do not have OOB scores. \"\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:458: RuntimeWarning: invalid value encountered in true_divide\n",
+      "  predictions[k].sum(axis=1)[:, np.newaxis])\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:453: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable oob estimates.\n",
+      "  warn(\"Some inputs do not have OOB scores. \"\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:458: RuntimeWarning: invalid value encountered in true_divide\n",
+      "  predictions[k].sum(axis=1)[:, np.newaxis])\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:453: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable oob estimates.\n",
+      "  warn(\"Some inputs do not have OOB scores. \"\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:458: RuntimeWarning: invalid value encountered in true_divide\n",
+      "  predictions[k].sum(axis=1)[:, np.newaxis])\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:453: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable oob estimates.\n",
+      "  warn(\"Some inputs do not have OOB scores. \"\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:458: RuntimeWarning: invalid value encountered in true_divide\n",
+      "  predictions[k].sum(axis=1)[:, np.newaxis])\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:453: UserWarning: Some inputs do not have OOB scores. This probably means too few trees were used to compute any reliable oob estimates.\n",
+      "  warn(\"Some inputs do not have OOB scores. \"\n",
+      "C:\\Users\\Riddhima Mishra\\Anaconda3\\lib\\site-packages\\sklearn\\ensemble\\forest.py:458: RuntimeWarning: invalid value encountered in true_divide\n",
+      "  predictions[k].sum(axis=1)[:, np.newaxis])\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " 0.0795454545455\n",
+      "13\n",
+      "MSE = 0.0795454545455\n",
+      "14\n",
+      "MSE = 0.0738636363636\n",
+      "15\n",
+      "MSE = 0.0681818181818\n",
+      "16\n",
+      "MSE = 0.0852272727273\n",
+      "17\n",
+      "MSE = 0.0738636363636\n",
+      "18\n",
+      "MSE = 0.0795454545455\n",
+      "19\n",
+      "MSE = 0.0738636363636\n",
+      "20\n",
+      "MSE = 0.0738636363636\n",
+      "21\n",
+      "MSE = 0.0738636363636\n",
+      "22\n",
+      "MSE = 0.0511363636364\n",
+      "23\n",
+      "MSE = 0.0625\n",
+      "24\n",
+      "MSE = 0.0568181818182\n",
+      "25\n",
+      "MSE = 0.0568181818182\n",
+      "26\n",
+      "MSE = 0.0625\n",
+      "27\n",
+      "MSE = 0.0568181818182\n",
+      "28\n",
+      "MSE = 0.0568181818182\n",
+      "29\n",
+      "MSE = 0.0738636363636\n",
+      "30\n",
+      "MSE = 0.0738636363636\n",
+      "31\n",
+      "MSE = 0.0681818181818\n",
+      "32\n",
+      "MSE = 0.0738636363636\n",
+      "33\n",
+      "MSE = 0.0738636363636\n",
+      "34\n",
+      "MSE = 0.0681818181818\n",
+      "35\n",
+      "MSE = 0.0681818181818\n",
+      "36\n",
+      "MSE = 0.0738636363636\n",
+      "37\n",
+      "MSE = 0.0681818181818\n",
+      "38\n",
+      "MSE = 0.0681818181818\n",
+      "39\n",
+      "MSE = 0.0738636363636\n",
+      "40\n",
+      "MSE = 0.0738636363636\n",
+      "41\n",
+      "MSE = 0.0681818181818\n",
+      "42\n",
+      "MSE = 0.0681818181818\n",
+      "43\n",
+      "MSE = 0.0681818181818\n",
+      "44\n",
+      "MSE = 0.0681818181818\n",
+      "45\n",
+      "MSE = 0.0681818181818\n",
+      "46\n",
+      "MSE = 0.0681818181818\n",
+      "47\n",
+      "MSE = 0.0738636363636\n",
+      "48\n",
+      "MSE = 0.0738636363636\n",
+      "49\n",
+      "MSE = 0.0738636363636\n",
+      "50\n",
+      "MSE = 0.0681818181818\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.ensemble import RandomForestRegressor\n",
+    "from sklearn.ensemble import RandomForestClassifier\n",
+    "\n",
+    "for i in range(1,51):\n",
+    "    print(i)\n",
+    "    tree = RandomForestClassifier(n_estimators=i, bootstrap=True,\n",
+    "                                  oob_score=True, random_state=22, max_depth=None, min_samples_leaf=1)\n",
+    "    tree.fit(Xvars, yvals)\n",
+    "    score = tree.oob_score_\n",
+    "    MSE= 1 - score\n",
+    "    print('MSE =', MSE)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Lowest MSE from above iterations is MSE = 0.0511363636364 for n_estimator = 22 tweaking other parameters to check how accuracy score changes "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 287,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "max depth value =  1\n",
+      "MSE = 0.301136363636\n",
+      "max depth value =  2\n",
+      "MSE = 0.130681818182\n",
+      "max depth value =  3\n",
+      "MSE = 0.0852272727273\n",
+      "max depth value =  4\n",
+      "MSE = 0.0795454545455\n",
+      "max depth value =  5\n",
+      "MSE = 0.0625\n",
+      "max depth value =  6\n",
+      "MSE = 0.0681818181818\n",
+      "max depth value =  7\n",
+      "MSE = 0.0568181818182\n",
+      "max depth value =  8\n",
+      "MSE = 0.0568181818182\n",
+      "max depth value =  9\n",
+      "MSE = 0.0511363636364\n",
+      "max depth value =  10\n",
+      "MSE = 0.0511363636364\n"
+     ]
+    }
+   ],
+   "source": [
+    "for i in range(1,11):\n",
+    "    depth_value= i \n",
+    "    print(\"max depth value = \", depth_value)\n",
+    "    tree = RandomForestClassifier(n_estimators=22, bootstrap=True,\n",
+    "                                  oob_score=True, random_state=22, max_depth=depth_value, min_samples_leaf=1)\n",
+    "    tree.fit(Xvars, yvals)\n",
+    "    tree.fit(Xvars, yvals)\n",
+    "    score = tree.oob_score_\n",
+    "    MSE = 1 - score\n",
+    "    print('MSE =', MSE)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "From max_depth = 9 and 10, the MSE value is the same as the default max_depth value of none and n_estimators=22 i.e. 0.0511363636364. Tweaking min_samples_leaf to check MSE value changes"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 288,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "min sample leaf value =  0.1\n",
+      "MSE = 0.142045454545\n",
+      "min sample leaf value =  0.2\n",
+      "MSE = 0.221590909091\n",
+      "min sample leaf value =  0.3\n",
+      "MSE = 0.318181818182\n",
+      "min sample leaf value =  0.4\n",
+      "MSE = 0.596590909091\n",
+      "min sample leaf value =  0.5\n",
+      "MSE = 0.596590909091\n"
+     ]
+    }
+   ],
+   "source": [
+    "for i in range(1,6):\n",
+    "    sample_leaf_value= i/10\n",
+    "    print(\"min sample leaf value = \", sample_leaf_value)\n",
+    "    tree = RandomForestClassifier(n_estimators=22, bootstrap=True,\n",
+    "                                  oob_score=True, random_state=22, max_depth=10, min_samples_leaf=sample_leaf_value)\n",
+    "    tree.fit(Xvars, yvals)\n",
+    "    tree.fit(Xvars, yvals)\n",
+    "    score = tree.oob_score_\n",
+    "    MSE = 1 - score\n",
+    "    print('MSE =', MSE)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### From the above iterations, lowest MSE obtained is 0.0511363636364 with n_estimators=22, max_depth=10, and min sample leaf value = 1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## d. SVM.SVC"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 279,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Value of C = 0.05 : MSE = 0.534090909091\n",
+      "Value of C = 0.15000000000000002 : MSE = 0.25\n",
+      "Value of C = 0.25 : MSE = 0.227272727273\n",
+      "Value of C = 0.35 : MSE = 0.181818181818\n",
+      "Value of C = 0.45 : MSE = 0.176136363636\n",
+      "Value of C = 0.55 : MSE = 0.176136363636\n",
+      "Value of C = 0.65 : MSE = 0.153409090909\n",
+      "Value of C = 0.75 : MSE = 0.153409090909\n",
+      "Value of C = 0.8500000000000001 : MSE = 0.153409090909\n",
+      "Value of C = 0.9500000000000001 : MSE = 0.153409090909\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn import svm\n",
+    "from sklearn.datasets import make_blobs\n",
+    "\n",
+    "clf_mlog = KFold(n_splits=4, random_state=22, shuffle=True)\n",
+    "\n",
+    "clf_mlog.get_n_splits(Xvars)\n",
+    "\n",
+    "MSE_vec_svm = np.zeros(4)\n",
+    "\n",
+    "for c in range(10):\n",
+    "    value_C = (c/10) + 0.05\n",
+    "    #print(\"Value of C =\", value_C)\n",
+    "    k_ind = int(0)\n",
+    "    for train_index, test_index in clf_mlog.split(Xvars):\n",
+    "        # print(\"TRAIN:\", train_index, \"TEST:\", test_index)\n",
+    "        #print('k index=', k_ind)\n",
+    "        X_train, X_test = Xvars[train_index], Xvars[test_index]\n",
+    "        y_train, y_test = yvals[train_index], yvals[test_index]\n",
+    "        clf_svm = svm.SVC(kernel='rbf', C= (c/10) + 0.05, gamma=0.2)\n",
+    "        clf_svm.fit(X_train, y_train)\n",
+    "        y_pred = clf_svm.predict(X_test)\n",
+    "        MSE_vec_svm[k_ind] = ((y_test - y_pred) ** 2).mean()\n",
+    "        score = clf_svm.score(X_test, y_test)\n",
+    "        #print('MSE for test set', k_ind, ' is', MSE_vec_svm[k_ind])\n",
+    "        k_ind += 1\n",
+    "    MSE_svm = MSE_vec_svm.mean()\n",
+    "    MSE_svm_std = MSE_vec_svm.std()\n",
+    "    #acc_score = score.mean()\n",
+    "    print(\"Value of C =\", value_C ,\":\", 'MSE =', MSE_svm)\n",
+    "\n",
+    "#print(\"the tuning parameter for c is 2 and gamma is 0.2\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The lowest MSE is 0.153409090909 for C = 0.65, 0.75, 0.85, and 0.95. Tweaking the value of gamma to check how MSE changes"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 281,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Value of gamma = 0.01 MSE= 0.255681818182\n",
+      "Value of gamma = 0.11 MSE= 0.1875\n",
+      "Value of gamma = 0.21000000000000002 MSE= 0.153409090909\n",
+      "Value of gamma = 0.31 MSE= 0.159090909091\n",
+      "Value of gamma = 0.41000000000000003 MSE= 0.164772727273\n",
+      "Value of gamma = 0.51 MSE= 0.159090909091\n",
+      "Value of gamma = 0.61 MSE= 0.130681818182\n",
+      "Value of gamma = 0.71 MSE= 0.130681818182\n",
+      "Value of gamma = 0.81 MSE= 0.130681818182\n",
+      "Value of gamma = 0.91 MSE= 0.107954545455\n"
+     ]
+    }
+   ],
+   "source": [
+    "clf_mlog = KFold(n_splits=4, random_state=22, shuffle=True)\n",
+    "\n",
+    "clf_mlog.get_n_splits(Xvars)\n",
+    "\n",
+    "MSE_vec_svm = np.zeros(4)\n",
+    "\n",
+    "for gamma in range(10):\n",
+    "    value_gamma = (gamma/10) + .01\n",
+    "    #print(\"Value of gamma =\", value_gamma)\n",
+    "    k_ind = int(0)\n",
+    "    for train_index, test_index in clf_mlog.split(Xvars):\n",
+    "        # print(\"TRAIN:\", train_index, \"TEST:\", test_index)\n",
+    "        #print('k index=', k_ind)\n",
+    "        X_train, X_test = Xvars[train_index], Xvars[test_index]\n",
+    "        y_train, y_test = yvals[train_index], yvals[test_index]\n",
+    "        clf_svm = svm.SVC(kernel='rbf', C= 0.65, gamma= value_gamma)\n",
+    "        clf_svm.fit(X_train, y_train)\n",
+    "        score = clf_svm.score(X_test, y_test)\n",
+    "        y_pred = clf_svm.predict(X_test)\n",
+    "        MSE_vec_svm[k_ind] = ((y_test - y_pred) ** 2).mean()\n",
+    "        #print('MSE for test set', k_ind, ' is', MSE_vec_svm[k_ind])\n",
+    "        k_ind += 1\n",
+    "    MSE_svm = MSE_vec_svm.mean()\n",
+    "    acc_score = score.mean()\n",
+    "    #MSE_svm_std = MSE_vec_svm.std()\n",
+    "    print(\"Value of gamma =\", value_gamma,\n",
+    "      'MSE=', MSE_svm)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Based on the above results, we can see that the minimum MSE obtained is  0.107954545455 with gamma = 0.91 and C = 0.65"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## e. Neural Network"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 282,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "MSE for activation value = identity : MSE= 0.102272727273\n",
+      "MSE for activation value = logistic : MSE= 0.0681818181818\n",
+      "MSE for activation value = tanh : MSE= 0.0625\n",
+      "MSE for activation value = relu : MSE= 0.0625\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.neural_network import MLPClassifier\n",
+    "\n",
+    "clf_mlog = KFold(n_splits=4, random_state=22, shuffle=True)\n",
+    "\n",
+    "clf_mlog.get_n_splits(Xvars)\n",
+    "\n",
+    "MSE_vec_mlp = np.zeros(4)\n",
+    "\n",
+    "activation= ['identity', 'logistic', 'tanh', 'relu']\n",
+    "\n",
+    "for act in activation:\n",
+    "    #print(\"MSE for activation value =\", act)\n",
+    "    k_ind = int(0)\n",
+    "    for train_index, test_index in clf_mlog.split(Xvars):\n",
+    "        # print(\"TRAIN:\", train_index, \"TEST:\", test_index)\n",
+    "        #print('k index=', k_ind)\n",
+    "        X_train, X_test = Xvars[train_index], Xvars[test_index]\n",
+    "        y_train, y_test = yvals[train_index], yvals[test_index]\n",
+    "        clf_mlp = MLPClassifier(activation=act, solver='lbfgs', alpha=0.1, hidden_layer_sizes=(100, ))\n",
+    "        clf_mlp.fit(X_train, y_train)\n",
+    "        score = clf_mlp.score(X_test, y_test)\n",
+    "        y_pred = clf_mlp.predict(X_test)\n",
+    "        MSE_vec_mlp[k_ind] = ((y_test - y_pred) ** 2).mean()\n",
+    "        #score_mlp = clf_mlp.score(X_test, y_test)\n",
+    "        k_ind += 1\n",
+    "    MSE_mlp = MSE_vec_mlp.mean()\n",
+    "    acc_score = score.mean()\n",
+    "    #MSE_mlp_std = MSE_vec_mlp.std()\n",
+    "    print(\"MSE for activation value =\", act,\":\",'MSE=', MSE_mlp)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "From the above results, we can see that the lowest MSE is 0.0625 for activation value \"tanh\" and \"relu\". Running the model with activation value tanh and tweaking other values."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 283,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "MSE for alpha value = 0.01 : MSE= 0.0909090909091\n",
+      "MSE for alpha value = 0.11 : MSE= 0.119318181818\n",
+      "MSE for alpha value = 0.21000000000000002 : MSE= 0.0681818181818\n",
+      "MSE for alpha value = 0.31 : MSE= 0.0795454545455\n",
+      "MSE for alpha value = 0.41000000000000003 : MSE= 0.0681818181818\n",
+      "MSE for alpha value = 0.51 : MSE= 0.0738636363636\n",
+      "MSE for alpha value = 0.61 : MSE= 0.0795454545455\n",
+      "MSE for alpha value = 0.71 : MSE= 0.0738636363636\n",
+      "MSE for alpha value = 0.81 : MSE= 0.0795454545455\n",
+      "MSE for alpha value = 0.91 : MSE= 0.0795454545455\n",
+      "MSE for alpha value = 1.01 : MSE= 0.0852272727273\n"
+     ]
+    }
+   ],
+   "source": [
+    "clf_mlog = KFold(n_splits=4, random_state=22, shuffle=True)\n",
+    "\n",
+    "clf_mlog.get_n_splits(Xvars)\n",
+    "\n",
+    "MSE_vec_mlp = np.zeros(4)\n",
+    "\n",
+    "\n",
+    "for alpha in range(11):\n",
+    "    alpha_value= (alpha/10) + 0.01\n",
+    "    #print(\"MSE for alpha value =\", alpha_value)\n",
+    "    k_ind = int(0)\n",
+    "    for train_index, test_index in clf_mlog.split(Xvars):\n",
+    "        # print(\"TRAIN:\", train_index, \"TEST:\", test_index)\n",
+    "        #print('k index=', k_ind)\n",
+    "        X_train, X_test = Xvars[train_index], Xvars[test_index]\n",
+    "        y_train, y_test = yvals[train_index], yvals[test_index]\n",
+    "        clf_mlp = MLPClassifier(activation='tanh', solver='lbfgs', alpha=0.1, hidden_layer_sizes=(100, ))\n",
+    "        clf_mlp.fit(X_train, y_train)\n",
+    "        score = clf_mlp.score(X_test, y_test)\n",
+    "        y_pred = clf_mlp.predict(X_test)\n",
+    "        MSE_vec_mlp[k_ind] = ((y_test - y_pred) ** 2).mean()\n",
+    "        #score_mlp = clf_mlp.score(X_test, y_test)\n",
+    "        k_ind += 1\n",
+    "    MSE_mlp = MSE_vec_mlp.mean()\n",
+    "    acc_score = score.mean()\n",
+    "    #MSE_mlp_std = MSE_vec_mlp.std()\n",
+    "    print(\"MSE for alpha value =\", alpha_value,\":\",'MSE=', MSE_mlp)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### From the above results, we can see that the lowest MSE is 0.0625 for activation value \"tanh\" and \"relu\" , and alpha = 0.1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### f. Best model from the above three models\n",
+    "\n",
+    "Based on the least MSE scores after tweaking various parameters for each of the model, RandomForest Classifier is the best model"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
