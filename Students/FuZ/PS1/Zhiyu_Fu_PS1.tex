@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}%
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.2cm, right=2.2cm]%
+{geometry}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{enumerate}
+\usepackage{amstext}
+\usepackage{graphicx}%
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\bibliographystyle{apalike}
+\begin{document}
+
+\title{Problem \#1}
+\author{Zhiyu Fu}
+\date{\today}
+\maketitle
+\section{Part I}
+\begin{enumerate}[a)]
+	\item The paper I choose is \textit{Identifying and Spurring High-Growth Entrepreneurship: Experimental Evidence from a Business Plan Competition} \citep{McKenzie2017AER}.
+	\item See below.
+	\item The statistical model is as follows:
+	\begin{equation}
+	\textit{Outcome}_i = a + b \times \textit{AssignTreat}_i + c \times \textit{Region} \times \textit{Gender}_i + \epsilon_i
+	\end{equation}
+	Since this study used an experiment, the key variable in the model is whether the applicants was randomly assigned to the treatment group. $\textit{Region} \times \textit{Gender}_i$ controls for the randomization strata.
+	\item Due to the nature of experiment, the treatment variable as well as the control variables (region and gender) is exogeneous, and the outcome variables (survival rate, entry rate, employment and profit) are endogeneous.
+	\item It is a linear, static and stochastic model.
+	\item This study examines the impact of the entrepreneurs' winning of a national business plan competition on the business outcomes. Gender, as a potential confounded factor, is controlled in the model. However, entrepreneur's educational background is as important as, if not more than, gender in the success of a startup. Thus, I suggest the author controls education in the model as well.
+\end{enumerate}
+
+\bibliography{reference.bib}
+
+\newpage
+
+\section{Part II}
+\begin{enumerate}
+	\item[a-c.]:
+\begin{equation}
+\begin{split}
+M^* = & \beta_0 + \beta_1\textit{Age} \times \textit{Gender} + \beta_2\textit{Income} + \beta_3\textit{Education} + \beta_4\textit{Unemployment} + \\
+	 & \beta_5\textit{ethnicity} + \beta_6 \textit{Asset} + \epsilon
+\end{split}
+\end{equation}
+
+$$ \textit{Married} = 
+	\begin{cases}
+	1, \textit{ if } M^*>0 \\
+	0, \textit{ Otherwise}
+	\end{cases}
+$$
+Note that for clarity, I displayed only one term for dummy variables. For example, $beta_1$ should be intepreted as 2 parameters for both gender. 
+
+\item [d.] The key factors are age, gender, income and education.
+\item [e.] Of course, other factors are also very important. However, in order to keep the simplicity and intepretability of our model while achieving the best explanatory power, we focus on the most important ones. One's age considerably influence one's decision of marriage. After one's age reach some thresholds (which may differ across genders) her willingness of unmarried people toward marriage increases dramatically. Income and education determine one's ability to find a spouse, and hence also play an important role in the decision of marriage.
+\item [f.] Since this model is a probit model, I can use existing survey data to test the model with a probit regression. These factors are commonly covered in most of microeconomic household surveys.
+\end{enumerate}
+
+
+\end{document}

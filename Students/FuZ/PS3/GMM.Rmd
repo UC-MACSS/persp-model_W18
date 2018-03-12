@@ -1,0 +1,33 @@
+---
+title: "Untitled"
+author: "Zhiyu Fu"
+date: "1/20/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(data.table)
+library(gmm)
+dt = fread("incomes.txt")
+data_moment = rbind(mean(dt$V1), var(dt$V1))
+g = function(theta, x)
+{
+  data_moment = rbind(mean(x$V1), var(x$V1))
+  mu = theta[1]
+  sigma = theta[2]
+  mean = exp(mu + sigma/2)
+  var = exp(2*mu + sigma) * exp(sigma - 1)
+  model_moment = rbind(mean, var)
+  return ((model_moment - data_moment)/data_moment)
+}
+gmm(g, dt, t0 = c(11, 0.5), wmatrix = "ident")
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
