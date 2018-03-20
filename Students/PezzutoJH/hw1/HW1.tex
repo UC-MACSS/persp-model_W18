@@ -1,0 +1,148 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,  %maybe not
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  MACS 30100, Dr. Evans \\
+  John-Henry Pezzuto
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Problem 1 Classify a model from a journal} %% problem one starts here
+
+\section{Part (a)} 
+
+The model I analyzed was from a field experiemnt determining whether investment decisions were influenced by the investment decisions of peers.\\
+
+\textbf{Part (b)} 
+
+Bursztyn, L., Ederer, F., Ferman, B., \& Yuchtman, N. (2014). Understanding Mechanisms Underlying Peer Effects: Evidence From a Field Experiment on Financial Decisions. Econometrica, 82(4), 1273-1301. https://doi.org/10.3982/ECTA11991\\
+
+
+\textbf{Part (c)} 
+
+\begin{equation*}
+  Y_{i} = \alpha + \sum_{c}\beta_{c}I_{c,i} +  \gamma'X_{i} + \varepsilon_{i}
+\end{equation*}
+
+
+\textbf{Part (d)}\\
+
+
+The \textbf{exogenous variables} are, $I_{c,i}$, the experimental condition investor i was in, and 
+$X_{i}$,  broker fixed effects and investor characteristics\\
+
+The \textbf{endogenous variable} is, $Y_{i}$  - the decision made by an  investor\\
+
+\textbf{Part (e)} 
+
+This model is static, and linear. The model is stochastic because it includes an error term to introduce an element of randomness to the model.\\
+
+\textbf{Part (f)} \\
+
+This model does not incorporate what kind of asset the investor is purchasing. It is possible that investors could be influenced by peers differently across the purchase of different assets.\\
+
+\vspace{230mm}
+
+\noindent\textbf{Problem 2 Make your own model (5 points)} %% problem two starts here
+
+\textbf{Part (a)}\\
+
+\begin{equation*}
+\textrm{Define}\ q =\beta_{0} + \beta_{1}age_{i} + \beta_{2}culture_{i} + \beta_{3}gender_{i} +\beta_{4}dating_{i} + \varepsilon_{i}
+\end{equation*}
+
+
+
+  \[
+    M_{i}=\left\{
+                \begin{array}{ll}
+                  1,\qquad q > k\\
+                  0,\qquad q \leq k\\
+                \end{array}
+              \right.
+  \]
+
+
+\hspace{12mm} Where k is a specified integer\\
+
+
+\textbf{Part (d)} \\
+
+I think age is the most important indicator about whether someone decides to get married or not. In many regions it is illegal for children and young teenagers to get married, so they age can exclude this subset of the population. I also think that culture is very good indicator of when someone decides to get get married and whether they get remarried (divorce is very taboo in some cultures). I also included gender as a third parameter because I thought it was likely that women married at younger ages than men on average. Lastly, I included a binary dating parameter because a lot of people in Western cultures date before marriage.\\
+
+\textbf{Part (e)} \\
+
+I picked these parameters because I thought they would fare well around the world than certain others. \\
+
+For example, I decided not to include a length of dating parameter because I thought it would have a high degree of variance and thus be a poor predictor across the world. I also didn't include any information about personality because I thought it would be too difficult to parameterize for a model. \\
+
+\textbf{Part (f)} \\
+
+To test this model in real life I could survey a large number of people around the world about the key features described in my model as well as other factors, as well as asking people whether they are going to decide to get married. With this information I could use a statistical software to determine how good of predictors the traits I picked are at determining whether the factors I picked are significant or not. 
+\end{document}
